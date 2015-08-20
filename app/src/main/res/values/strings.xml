@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Memory View</string>
+    <string name="app_name">Remembering</string>
 
     <!-- estos son los textos del menu  -->
     <string name="inicio">Inicio</string>
@@ -17,6 +17,8 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="title_activity_camara_galeria">CamaraGaleria</string>
 
     <!-- Nombres de los items -->
     <string-array name="nav_drawer_items">
