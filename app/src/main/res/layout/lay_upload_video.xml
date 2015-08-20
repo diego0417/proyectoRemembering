@@ -4,25 +4,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp" >
-
-    
-
-    <!-- To display picture taken -->
-
-    <ImageView
-        android:id="@+id/imgPreview"
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
-        android:visibility="gone" 
-        android:layout_marginTop="15dp"/>
-
-    <!-- Videoview to preview recorded video -->
+  <!-- Videoview to preview recorded video -->
 
     <VideoView
         android:id="@+id/videoPreview"
         android:layout_width="fill_parent"
         android:layout_height="400dp"
-        android:visibility="gone" 
+        android:visibility="gone"
         android:layout_marginTop="15dp"/>
 
     <TextView
@@ -39,7 +27,7 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
         android:layout_height="20dp"
-        android:layout_marginBottom="35dp" 
+        android:layout_marginBottom="35dp"
         android:visibility="gone"/>
 
     <Button
@@ -49,7 +37,7 @@
         android:layout_gravity="center_horizontal"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="Subir"
+        android:text="@string/btnUploadToServer"
         android:layout_marginBottom="20dp"/>
 
 </LinearLayout>
