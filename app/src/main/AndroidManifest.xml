@@ -24,6 +24,14 @@
             android:name=".vistas.CamaraGaleria"
             android:label="@string/title_activity_camara_galeria" >
         </activity>
+        <activity
+            android:name=".vistas.Loggin"
+            android:label="@string/title_activity_loggin" >
+        </activity>
+        <activity
+            android:name=".vistas.CrearCuenta"
+            android:label="@string/title_activity_crear_cuenta" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="fill_parent" android:padding="20dip" android:orientation="vertical">
+
+    <EditText android:id="@+id/txtNombre_Reg" android:layout_height="wrap_content" android:layout_width="fill_parent"
+        android:hint="Nombre" android:inputType="text" />
+
+
+    <EditText android:id="@+id/txtApellido_Reg" android:layout_height="wrap_content" android:layout_width="fill_parent"
+        android:hint="Apellido" android:inputType="text" android:layout_marginTop="15dip" android:layout_marginBottom="5dip" />
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+
+        <TextView android:id="@+id/txtFechaNaci_Reg" android:layout_height="wrap_content" android:layout_width="190dp"
+            android:hint="Fecha de Nacimiento" android:inputType="text" android:editable="false"
+            />
+        <Button android:id="@+id/btnMuestra_Reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Selecciona"/>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sexo"
+        android:textSize="17sp"
+        android:layout_marginTop="5dp"/>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dip" android:layout_marginBottom="0dip"
+        android:gravity="center">
+        <RadioButton android:id="@+id/radio_mascul_Reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hombre"
+            />
+        <RadioButton android:id="@+id/radio_femen_Reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mujer"
+            />
+    </RadioGroup>
+
+
+    <EditText android:id="@+id/txtEmail_Reg" android:layout_marginTop="10dip" android:layout_height="wrap_content"
+        android:layout_width="fill_parent" android:hint="Email" android:inputType="textEmailAddress" />
+
+    <EditText android:id="@+id/txtPass_Reg" android:layout_height="wrap_content"
+        android:layout_width="fill_parent" android:hint="Password" android:inputType="textPassword"
+        android:layout_marginTop="15dip" android:layout_marginBottom="30dip" />
+
+
+    <Button android:id="@+id/btnRegister_Reg" android:layout_height="wrap_content"
+        android:layout_width="wrap_content" android:text="Registrarme"
+        android:layout_gravity="center_horizontal" android:paddingLeft="15dip" android:paddingRight="15dip" />
+
+    <TextView android:id="@+id/linkALoggin_Reg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip"
+        android:layout_marginBottom="40dip"
+        android:text="¿Ya tienes cuenta? Accede!"
+        android:gravity="center"
+        android:textSize="20dip"
+        android:textColor="#0b84aa"/>
+
+
+
+</LinearLayout>
