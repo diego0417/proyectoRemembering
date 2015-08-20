@@ -3,6 +3,7 @@ package com.example.diego.inicio2;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -16,7 +17,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.diego.inicio2.vistas.Contactos;
+import com.example.diego.inicio2.vistas.CrearCuenta;
 import com.example.diego.inicio2.vistas.Inicio;
+import com.example.diego.inicio2.vistas.Loggin;
 import com.example.diego.inicio2.vistas.NavDrawerItem;
 import com.example.diego.inicio2.vistas.NavDrawerListAdapter;
 import com.example.diego.inicio2.vistas.Perfil;

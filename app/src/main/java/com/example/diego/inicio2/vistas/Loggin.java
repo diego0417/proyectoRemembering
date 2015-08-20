@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.diego.inicio2.Entidades.Comunicador;
 import com.example.diego.inicio2.Entidades.Usuario;
+import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
 
@@ -38,7 +39,6 @@ public class Loggin extends Activity {
             public void onClick(View v) {
                 Intent intent = new Intent(Loggin.this, CrearCuenta.class);
                 startActivity(intent);
-
             }
         });
 
@@ -50,14 +50,16 @@ public class Loggin extends Activity {
                 pro.setVisibility(View.VISIBLE);
                 etMail = (EditText) findViewById(R.id.mail);
                 etPass = (EditText) findViewById(R.id.pass);
-                Usuario usuario = ManejadorUsuario.login(etMail.getText().toString(), etPass.getText().toString());
-                if (usuario == null) {
-                    Toast.makeText(Loggin.this, "El mail y/o pass son invalidos", Toast.LENGTH_LONG).show();
-                } else {
+                //Usuario usuario = ManejadorUsuario.login(etMail.getText().toString(), etPass.getText().toString());
+                //if (usuario == null) {
+                    //Toast.makeText(Loggin.this, "El mail y/o pass son invalidos", Toast.LENGTH_LONG).show();
+                //} else {
                     //Intent i = new Intent(Loggin.this,Home.class);
                     //Comunicador.setObjeto(usuario);
                     //startActivity(i);
-                }
+                //}
+                Intent intent = new Intent(Loggin.this, MainActivity.class);
+                startActivity(intent);
 
             }});
 
