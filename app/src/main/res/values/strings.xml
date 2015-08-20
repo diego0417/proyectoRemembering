@@ -40,4 +40,7 @@
 
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_camara_galeria">CamaraGaleria</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
