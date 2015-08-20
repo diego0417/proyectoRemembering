@@ -24,9 +24,9 @@
     <string-array name="nav_drawer_items">
         <item >Diego Vilette</item>
         <item >Inicio</item>
-        <item >Grabar</item>
-        <item >Contactos</item>
-        <item >Videos</item>
+        <item >Subir Video</item>
+        <item >Amigos</item>
+        <item >Mis Videos</item>
         <item >Cerrar Sesion</item>
     </string-array>
 

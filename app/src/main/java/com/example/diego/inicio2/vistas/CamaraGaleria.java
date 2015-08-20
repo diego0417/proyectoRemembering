@@ -58,7 +58,7 @@ public class CamaraGaleria extends Activity {
                 captureImage();
             }
         });*/
-        btnCapturePicture.setOnClickListener(new View.OnClickListener() {
+        btnGaleria.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {

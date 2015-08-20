@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.diego.inicio2.vistas.CamaraGaleria;
 import com.example.diego.inicio2.vistas.Contactos;
 import com.example.diego.inicio2.vistas.CrearCuenta;
 import com.example.diego.inicio2.vistas.Inicio;
@@ -169,6 +170,7 @@ public class MainActivity extends Activity {
     private void displayView(int position) {
         // update the main content by replacing fragments
         Fragment fragment = null;
+        Intent intent = null;
         switch (position) {
             case 0:
                 fragment = new Perfil();
@@ -177,11 +179,15 @@ public class MainActivity extends Activity {
                 fragment = new Inicio();
                 break;
             case 2:
-                fragment = new Contactos();
+                intent = new Intent(MainActivity.this, CamaraGaleria.class);
                 break;
             case 3:
+                fragment = new Contactos();
+                break;
+            case 4:
                 fragment = new Videos();
                 break;
+
 
             default:
                 break;
@@ -197,9 +203,9 @@ public class MainActivity extends Activity {
             mDrawerList.setSelection(position);
             setTitle(navMenuTitles[position]);
             mDrawerLayout.closeDrawer(mDrawerList);
-        } else {
-            // error in creating fragment
-            Log.e("Ramiro", "MainActivity - Error cuando se creo el fragment");
+        }
+        if(intent!=null){
+            startActivity(intent);
         }
     }
 
