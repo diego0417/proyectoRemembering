@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Memory View</string>
+    <string name="app_name">Remembering</string>
 
     <!-- estos son los textos del menu  -->
     <string name="inicio">Inicio</string>
