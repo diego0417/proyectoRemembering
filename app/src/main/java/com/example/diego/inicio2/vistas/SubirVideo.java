@@ -1,5 +1,23 @@
 package com.example.diego.inicio2.vistas;
 
+import com.example.diego.inicio2.Conexion.AndroidMultiPartEntity;
+import com.example.diego.inicio2.Conexion.AndroidMultiPartEntity.ProgressListener;
+import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.R;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,23 +34,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
-
-import com.example.diego.inicio2.Conexion.AndroidMultiPartEntity;
-import com.example.diego.inicio2.Conexion.Conexion;
-import com.example.diego.inicio2.R;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-
-import java.io.File;
-import java.io.IOException;
 
 
 public class SubirVideo extends Activity {
@@ -54,7 +55,6 @@ public class SubirVideo extends Activity {
 		txtPercentage = (TextView) findViewById(R.id.txtPercentage);
 		btnUpload = (Button) findViewById(R.id.btnUpload);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		imgPreview = (ImageView) findViewById(R.id.imgPreview);
 		vidPreview = (VideoView) findViewById(R.id.videoPreview);
 
 		// Changing action bar background color
@@ -96,7 +96,6 @@ public class SubirVideo extends Activity {
 	private void previewMedia(boolean isImage) {
 		// Checking whether captured media is image or video
 		if (isImage) {
-			imgPreview.setVisibility(View.VISIBLE);
 			vidPreview.setVisibility(View.GONE);
 			// bimatp factory
 			BitmapFactory.Options options = new BitmapFactory.Options();
@@ -107,9 +106,7 @@ public class SubirVideo extends Activity {
 
 			final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
 
-			imgPreview.setImageBitmap(bitmap);
 		} else {
-			imgPreview.setVisibility(View.GONE);
 			vidPreview.setVisibility(View.VISIBLE);
 			vidPreview.setVideoPath(filePath);
 			// start playing
@@ -154,7 +151,7 @@ public class SubirVideo extends Activity {
 
 			try {
 				AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
-						new AndroidMultiPartEntity.ProgressListener() {
+						new ProgressListener() {
 
 							@Override
 							public void transferred(long num) {

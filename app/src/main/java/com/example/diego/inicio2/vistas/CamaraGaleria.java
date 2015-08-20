@@ -25,10 +25,9 @@ import java.util.Locale;
 
 public class CamaraGaleria extends Activity {
 
-    private static final String TAG ="Camara video";
+    private static final String TAG ="Camaravideo";
 
 
-    // Camera activity request codes
     private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
 
@@ -37,8 +36,7 @@ public class CamaraGaleria extends Activity {
 
     private Uri fileUri; // file url to store image/video
 
-    private Button btnCapturePicture, btnRecordVideo,btnGaleria;
-
+    private Button btnCapturePicture, btnRecordVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,29 +44,29 @@ public class CamaraGaleria extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_camara_galeria);
 
-        //btnCapturePicture = (Button) findViewById(R.id.btnCapturePicture);
+        // Changing action bar background color
+        // These two lines are not needed
+        //getActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(getResources().getString(R.color.action_bar))));
+
+        btnCapturePicture = (Button) findViewById(R.id.btnGaleria);
         btnRecordVideo = (Button) findViewById(R.id.btnRecordVideo);
-        btnGaleria = (Button) findViewById(R.id.btnGaleria);
+
         /**
          * Capture image button click event
          */
-        /*btnCapturePicture.setOnClickListener(new View.OnClickListener() {
+        btnCapturePicture.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // capture picture
-                captureImage();
-            }
-        });*/
-        btnGaleria.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // capture picture
+                //captureImage();
                 abrirGaleria();
             }
         });
 
+        /**
+         * Record video button click event
+         */
         btnRecordVideo.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -101,11 +99,20 @@ public class CamaraGaleria extends Activity {
             return false;
         }
     }
+
     private void abrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, MEDIA_TYPE_VIDEO);
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+        // start the video capture Intent
+        startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
+
+
     }
+
+    /**
+     * Launching camera app to capture image
+     */
     private void captureImage() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
