@@ -52,9 +52,9 @@
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="288dp"
+        android:layout_height="250dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         android:id="@+id/inicio_imagenVideo"
         android:src="@drawable/prueba2"
         android:layout_below="@+id/inicio_perfil"/>
