@@ -9,6 +9,7 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.diego.inicio2.vistas.Amigos;
 import com.example.diego.inicio2.vistas.CamaraGaleria;
 import com.example.diego.inicio2.vistas.Contactos;
 import com.example.diego.inicio2.vistas.CrearCuenta;
@@ -115,7 +117,7 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
             // on first time display view for first nav item
-            displayView(0);
+            displayView(1);
         }
     }
 
@@ -182,7 +184,7 @@ public class MainActivity extends Activity {
                 intent = new Intent(MainActivity.this, CamaraGaleria.class);
                 break;
             case 3:
-                fragment = new Contactos();
+                intent = new Intent(MainActivity.this, Amigos.class);
                 break;
             case 4:
                 fragment = new Videos();

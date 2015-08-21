@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Bienvenido a"
-                android:textColor="#004d40"
+                android:textColor="@color/color_secundario"
                 android:textSize="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="70dp"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Remembering"
-                android:textColor="#004d40"
+                android:textColor="@color/color_secundario"
                 android:textStyle="bold"
                 android:textSize="30dp"
                 android:layout_gravity="center"
@@ -52,7 +52,7 @@
                 android:ems="10"
                 android:hint="Email"
                 android:layout_marginLeft="65dp"
-                android:textColor="#004d40"
+                android:textColor="@color/color_secundario"
                 android:id="@+id/mail" />
 
             <EditText
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:layout_marginLeft="65dp"
-                android:textColor="#004d40"
+                android:textColor="@color/color_secundario"
                 android:hint="Password"
                 android:ems="10"
                 android:id="@+id/pass" />
@@ -78,8 +78,8 @@
                     android:layout_height="wrap_content"
                     android:text="Entrar"
                     android:layout_gravity="center"
-                    android:background="#004d40"
-                    android:textColor="#ffebee"
+                    android:background="@color/color_secundario"
+                    android:textColor="@color/color_secundario_contraste"
                     android:id="@+id/btnEntrar_Log" />
 
                 <TextView android:id="@+id/linkAReg_Log"
@@ -91,7 +91,7 @@
                     android:text="Crear nueva cuenta."
                     android:gravity="center"
                     android:textSize="15dip"
-                    android:textColor="#004d40"
+                    android:textColor="@color/color_secundario"
                     android:layout_weight="0.51" />
 
             </LinearLayout>

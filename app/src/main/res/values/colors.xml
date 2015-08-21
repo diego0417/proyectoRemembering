@@ -2,6 +2,8 @@
 <resources>
     <color name="negro">#000000</color>
     <color name="blanco">#fff</color>
+    <color name="color_secundario">#004d40</color>
+    <color name="color_secundario_contraste">#ffebee</color>
     <color name="black_grey">#626262</color>
     <color name="list_item_title">#303030</color>
     <color name="list_background">#FAFAFA</color>
