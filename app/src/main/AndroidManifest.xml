@@ -42,6 +42,10 @@
             android:name=".vistas.ReproducirVideo"
             android:label="@string/title_activity_reproducir_video" >
         </activity>
+        <activity
+            android:name=".vistas.SubirVideo"
+            android:label="SubirVideo" >
+        </activity>
     </application>
 
 </manifest>
