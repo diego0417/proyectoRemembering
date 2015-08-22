@@ -37,6 +37,7 @@ public class ManejadorVideo {
         return lista;
     }
 
+
     static private Video armarVideo(JSONObject data) throws JSONException {
         String titulo = data.getString("TITULO");
         String descripcion = data.getString("DESCRIPCION");

@@ -73,6 +73,7 @@ public class CamaraGaleria extends Activity {
             public void onClick(View v) {
                 // record video
                 recordVideo();
+
             }
         });
 
@@ -221,6 +222,8 @@ public class CamaraGaleria extends Activity {
         i.putExtra("filePath", fileUri.getPath());
         i.putExtra("isImage", isImage);
         startActivity(i);
+
+
     }
 
     /**

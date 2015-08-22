@@ -35,13 +35,13 @@ public class Inicio extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.lv_inicion, container, false);
+        rootView = inflater.inflate(R.layout.lv_inicion, container, false);
 
         lv = (ListView) rootView.findViewById(R.id.lv);
 
         cargarVideos();
         cargarvistas();
-        /*
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,8 +51,7 @@ public class Inicio extends Fragment {
                 intent.putExtra("url", url.get(position));
                 startActivity(intent);
             }
-
-        });*/
+        });
 
         return rootView;
     }
@@ -108,6 +107,7 @@ public class Inicio extends Fragment {
 
             TextView texto2 = (TextView) itenview.findViewById(R.id.inicio_perfil_nombre);
             texto2.setText(videoActual.getUsuario().getNombre());
+
             /*
             //PROBANDO SIN CONEXION
             TextView texto1 = (TextView) itenview.findViewById(R.id.inicio_descripcion_titulo);

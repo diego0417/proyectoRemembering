@@ -11,13 +11,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.Conexion.ImageLoad;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
 
 /**
  * Created by diego on 8/14/2015.
  */
 public class Perfil extends Fragment {
+    TextView mail;
+    TextView nombreCompleto;
+    TextView sexo;
+    TextView fecha;
+    ImageView imageView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,10 +46,9 @@ public class Perfil extends Fragment {
         //asignamos el CornerRadius
         roundedDrawable.setCornerRadius(originalBitmap.getWidth());
 
-        ImageView imageView = (ImageView)(rootView).findViewById(R.id.imgUsuario_MiPerfil);
+        imageView = (ImageView)(rootView).findViewById(R.id.imgUsuario_MiPerfil);
 
         imageView.setImageDrawable(roundedDrawable);
-
 
         return rootView;
     }

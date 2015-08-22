@@ -20,6 +20,8 @@ import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
 
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CrearCuenta extends Activity {
 
@@ -62,17 +64,22 @@ public class CrearCuenta extends Activity {
                 etMail = (EditText) findViewById(R.id.txtEmail_Reg);
                 etPass = (EditText) findViewById(R.id.txtPass_Reg);
                 rtSexo = (RadioButton)findViewById(R.id.radio_mascul_Reg);
-                Boolean x = ManejadorUsuario.insertarUsuario(etNombre.getText().toString(), etApelldo.getText().toString(), etMail.getText().toString(), etPass.getText().toString(), rtSexo.isChecked(), fechaNac.getText().toString());
-                if(x)
+                String res = validar();
+                if(res=="")
                 {
-
-                    Toast.makeText(CrearCuenta.this, "Gracias por crear una cuenta En MemoryView", Toast.LENGTH_LONG).show();
-                    Intent inten = new Intent(CrearCuenta.this,Loggin.class);
-                    startActivity(inten);
-
+                    Boolean x = ManejadorUsuario.insertarUsuario(etNombre.getText().toString(), etApelldo.getText().toString(), etMail.getText().toString(), etPass.getText().toString(), rtSexo.isChecked(), fechaNac.getText().toString());
+                    if(x)
+                    {
+                        Toast.makeText(CrearCuenta.this, "Gracias por crear una cuenta En Remembering", Toast.LENGTH_LONG).show();
+                        Intent inten = new Intent(CrearCuenta.this,Loggin.class);
+                        startActivity(inten);
+                    }else
+                    {
+                        Toast.makeText(CrearCuenta.this,"Algo salio mal",Toast.LENGTH_LONG).show();
+                    }
                 }else
                 {
-                    Toast.makeText(CrearCuenta.this,"Algo salio mal",Toast.LENGTH_LONG).show();
+                    Toast.makeText(CrearCuenta.this,res,Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -104,9 +111,6 @@ public class CrearCuenta extends Activity {
             }
         });
     }
-
-
-
 
     @Override
     protected Dialog onCreateDialog(int id)
@@ -156,4 +160,33 @@ public class CrearCuenta extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private String validar()
+    {
+        String res="";
+        if(etNombre.getText().toString()==""||etNombre.getText().toString()=="Nombre")
+        {
+            res+="El nombre no es valido \n";
+        }
+        if(etApelldo.getText().toString()==""||etApelldo.getText().toString()=="Apellido")
+        {
+            res+="El Apellido no es valido \n";
+        }
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+        // Match the given input against this pattern
+        Matcher matcher = pattern.matcher(etMail.getText().toString());
+        if(!matcher.matches())
+        {
+            res+="El Email no es valido \n";
+        }
+        if(etPass.getText().toString().length()<8 || etPass.getText().toString().length()>20)
+        {
+            res+="El Pass debe contener entre 8 y 20 caracteres \n";
+        }
+        return res;
+    }
+
+
 }

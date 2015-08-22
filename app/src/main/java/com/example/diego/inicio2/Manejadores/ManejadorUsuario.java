@@ -17,20 +17,23 @@ import java.util.Date;
 public class ManejadorUsuario {
 
     private static MYSQL_Request request = Conexion.nuevaConexion();
-    static public Usuario login(String mailEnviar,String passEnviar)
+    public static Usuario usuario = null;
+
+    static public Boolean login(String mailEnviar,String passEnviar)
     {
+        Boolean res = false;
         MYSQL_Request request = Conexion.nuevaConexion();
         request.setRequest("SELECT * FROM usuario WHERE mail='"+mailEnviar+"'and pass='"+passEnviar+"';");
         request.getServerData();
-        Usuario usuario = null;
         while (request.getNextEntry()) {
             JSONObject data = request.getJsonValue();
+            res = true;
             try {
                 usuario = armarUsuario(data);
             } catch (Exception e) {
             }
         }
-        return usuario;
+        return res;
     }
 
     static public Usuario clienteId(int id)

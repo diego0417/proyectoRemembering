@@ -50,18 +50,13 @@ public class Loggin extends Activity {
                 pro.setVisibility(View.VISIBLE);
                 etMail = (EditText) findViewById(R.id.mail);
                 etPass = (EditText) findViewById(R.id.pass);
-                //Usuario usuario = ManejadorUsuario.login(etMail.getText().toString(), etPass.getText().toString());
-                //if (usuario == null) {
-                    //Toast.makeText(Loggin.this, "El mail y/o pass son invalidos", Toast.LENGTH_LONG).show();
-                //} else {
-                    //Intent i = new Intent(Loggin.this,Home.class);
-                    //Comunicador.setObjeto(usuario);
-                    //startActivity(i);
-                //}
-                Intent intent = new Intent(Loggin.this, MainActivity.class);
-                startActivity(intent);
-
+                ManejadorUsuario.login(etMail.getText().toString(), etPass.getText().toString());
+                if (ManejadorUsuario.usuario == null) {
+                    Toast.makeText(Loggin.this, "El mail y/o pass son invalidos", Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(Loggin.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }});
-
     }
 }
