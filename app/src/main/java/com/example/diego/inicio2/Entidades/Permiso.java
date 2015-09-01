@@ -37,4 +37,8 @@ public class Permiso {
     public void setDescripcionCorta(String descripcionCorta) {
         this.descripcionCorta = descripcionCorta;
     }
+
+    @Override
+    public String toString() {
+        return this.getDescripcionCorta();  }
 }
