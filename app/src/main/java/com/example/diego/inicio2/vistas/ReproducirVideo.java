@@ -1,6 +1,7 @@
 package com.example.diego.inicio2.vistas;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ public class ReproducirVideo extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reproducir_video);
+        // PANTALLA EN VERTICAL
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
         String url = getIntent().getStringExtra("url");
         videoV = (VideoView)findViewById(R.id.video_reproducir);

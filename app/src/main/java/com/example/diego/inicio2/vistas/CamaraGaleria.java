@@ -2,6 +2,7 @@ package com.example.diego.inicio2.vistas;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,6 +44,8 @@ public class CamaraGaleria extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_camara_galeria);
+        // PANTALLA EN VERTICAL
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
         // Changing action bar background color
         // These two lines are not needed
