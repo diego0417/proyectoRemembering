@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
+import com.example.diego.inicio2.vistas.Amigos;
 import com.example.diego.inicio2.vistas.CamaraGaleria;
 import com.example.diego.inicio2.vistas.Contactos;
 import com.example.diego.inicio2.vistas.CrearCuenta;
@@ -71,7 +73,7 @@ public class MainActivity extends Activity {
 
         // agregar un nuevo item al menu deslizante
         // Perfil
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1),"diegov.0417@gmail.com"));
+        navDrawerItems.add(new NavDrawerItem(ManejadorUsuario.usuario.getNombre()+" "+ManejadorUsuario.usuario.getApellido(), navMenuIcons.getResourceId(0, -1),ManejadorUsuario.usuario.getMail()));
         // Inicio
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1), true, "+99"));
         // Grabar
@@ -118,7 +120,7 @@ public class MainActivity extends Activity {
 
         if (savedInstanceState == null) {
             // on first time display view for first nav item
-            displayView(0);
+            displayView(1);
         }
     }
 
@@ -185,7 +187,7 @@ public class MainActivity extends Activity {
                 intent = new Intent(MainActivity.this, CamaraGaleria.class);
                 break;
             case 3:
-                fragment = new Contactos();
+                intent = new Intent(MainActivity.this, Amigos.class);
                 break;
             case 4:
                 fragment = new Videos();

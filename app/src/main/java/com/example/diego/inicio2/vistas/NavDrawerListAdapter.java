@@ -10,6 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.Conexion.ImageLoad;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
 
 import java.util.ArrayList;
@@ -54,9 +57,10 @@ public class NavDrawerListAdapter extends BaseAdapter {
 			TextView txtTitle2 = (TextView) convertView.findViewById(R.id.nombre);
 			TextView txtCount2 = (TextView) convertView.findViewById(R.id.mail);
 
-			imgIcon2.setImageResource(navDrawerItems.get(position).getIcon());
-			txtTitle2.setText("Diego Vilette");
-			txtCount2.setText("diegov.0417@gmail.com");
+			new ImageLoad(Conexion.MI_IP+"FotosPerfil/"+ ManejadorUsuario.usuario.getIdUsuario()+".jpg", imgIcon2).execute();
+
+			txtTitle2.setText(navDrawerItems.get(position).getNombre());
+			txtCount2.setText(navDrawerItems.get(position).getMail());
 			// displaying count
 			// check whether it set visible or not
 
