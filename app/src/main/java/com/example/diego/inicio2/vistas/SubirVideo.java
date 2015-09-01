@@ -216,12 +216,9 @@ public class SubirVideo extends Activity {
 			{
 				showAlert(result);
 			}
-
-
 			//Intent i = new Intent(this,GrabarVideo.class);
 			//super.onPostExecute(result);
 		}
-
 	}
 
 	/**

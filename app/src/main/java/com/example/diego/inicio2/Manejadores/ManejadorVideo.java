@@ -12,16 +12,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Matias Sosa on 8/14/2015.
  */
 public class ManejadorVideo {
     private static MYSQL_Request request = Conexion.nuevaConexion();
-    private static ArrayList<Video> lista = new ArrayList<Video>();
+
 
     static public ArrayList<Video> getAllVideos()
     {
+        ArrayList<Video> lista = new ArrayList<Video>();
         MYSQL_Request request = Conexion.nuevaConexion();
         request.setRequest("SELECT * FROM video;");
         request.getServerData();
@@ -37,6 +39,30 @@ public class ManejadorVideo {
         return lista;
     }
 
+    static public Boolean descripcionVideo(Video video)
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        HashMap<String, String> values = new HashMap<String, String>();
+        values.put("FECHA_DESBLOQUEO", video.getFechaDesbloqueo().toString());
+        values.put("ID_PERMISO", Integer.toString(video.getPermiso().getIdPermiso()));
+        if(video.getUbicacion()==null)
+        {
+            values.put("ID_UBICACION", "NULL");
+        }else{
+            values.put("ID_UBICACION", Integer.toString(video.getUbicacion().getIdUbicacion()));
+        }
+
+        values.put("TITULO", video.getTitulo());
+        values.put("DESCRIPCION", video.getDescripcion());
+        Boolean res= true;
+        try
+        {
+            request.executeRequest();
+        }catch (Exception e){
+            res = false;
+        }
+        return res;
+    }
 
     static private Video armarVideo(JSONObject data) throws JSONException {
         String titulo = data.getString("TITULO");
