@@ -36,12 +36,15 @@
 
     <Button
         android:id="@+id/btnUpload"
-        android:layout_width="277dp"
+        android:layout_width="254dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingLeft="20dp"
         android:drawableLeft="@drawable/uploadvideo"
-        android:background="#0277bd"
+        android:background="@color/color_secundario"
+        android:textColor="#ffffff"
+
+
         android:paddingRight="20dp"
         android:text="COMPARTIR VIDEO"
         android:layout_marginBottom="20dp"/>
