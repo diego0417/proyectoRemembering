@@ -39,11 +39,30 @@ public class ManejadorVideo {
         return lista;
     }
 
+    static public ArrayList<Video> getVideosInicio()
+    {
+        ArrayList<Video> lista = new ArrayList<Video>();
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("call videosInicio("+ManejadorUsuario.usuario.getIdUsuario()+");");
+        request.getServerData();
+        Usuario usuario = null;
+        while (request.getNextEntry()) {
+            JSONObject data = request.getJsonValue();
+            Log.i("saf","PUTAAA"+data.toString());
+            try {
+                lista.add(armarVideo(data));
+            } catch (Exception e) {
+            }
+        }
+        return lista;
+    }
+
+
     static public ArrayList<Video> getMisVideos()
     {
         ArrayList<Video> lista = new ArrayList<Video>();
         MYSQL_Request request = Conexion.nuevaConexion();
-        request.setRequest("SELECT * FROM video WHERE ID_USUARIO="+ManejadorUsuario.usuario.getIdUsuario()+";");
+        request.setRequest("call misVideos("+ManejadorUsuario.usuario.getIdUsuario()+");");
         request.getServerData();
         Usuario usuario = null;
         while (request.getNextEntry()) {

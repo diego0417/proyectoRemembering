@@ -9,9 +9,9 @@ public class Conexion {
 	// Directory name to store captured images and videos
     public static final String IMAGE_DIRECTORY_NAME = "upload";
 
+
     static public MYSQL_Request nuevaConexion()
     {
         return new MYSQL_Request(MI_IP+"android_MYSQL_request.php", "remembering", "localhost", "root", "");
     }
-
 }
