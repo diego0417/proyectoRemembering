@@ -3,6 +3,7 @@ package com.example.diego.inicio2.vistas;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,12 +17,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.diego.inicio2.Conexion.GPS;
 import com.example.diego.inicio2.Entidades.Permiso;
+import com.example.diego.inicio2.Entidades.Ubicacion;
+import com.example.diego.inicio2.Entidades.Usuario;
+import com.example.diego.inicio2.Entidades.Video;
+import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.Manejadores.ManejadorPermiso;
+import com.example.diego.inicio2.Manejadores.ManejadorUbicacion;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
+import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
 import java.text.ParseException;
@@ -50,7 +60,6 @@ public class DescripcionVideo extends Activity {
         // PANTALLA EN VERTICAL
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
-        listo = (Button)findViewById(R.id.btnTerminar_DescVideo);
 
 
         final Calendar cal= Calendar.getInstance();
@@ -88,7 +97,7 @@ public class DescripcionVideo extends Activity {
                                        int arg2, long arg3) {
 
                 Permiso pe = (Permiso) ((Spinner) findViewById(R.id.spinnerVisibilidad_DescVideo)).getSelectedItem();
-                desc= (TextView) findViewById(R.id.txtDescripcionLargaPermiso_DescVideo);
+                desc = (TextView) findViewById(R.id.txtDescripcionLargaPermiso_DescVideo);
                 desc.setText(pe.getDescripcion());
 
 
@@ -101,10 +110,47 @@ public class DescripcionVideo extends Activity {
 
         });
 
-
-
-
-
+        listo = (Button)findViewById(R.id.btnTerminar_DescVideo);
+        listo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validar())
+                {
+                    GPS gps = new GPS(DescripcionVideo.this);
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+                    int idUbicacion = ManejadorUbicacion.insertarUbicacion(latitude, longitude);
+                    Ubicacion ubicacion = new Ubicacion(latitude,longitude,idUbicacion);
+                    Permiso permiso = (Permiso) ((Spinner) findViewById(R.id.spinnerVisibilidad_DescVideo)).getSelectedItem();
+                    Bundle bundle = getIntent().getExtras();
+                    int idVideo =  bundle.getInt("idVideo");
+                    titulo = (EditText)findViewById(R.id.txtTitulo_DescVideo);
+                    descripcion = (EditText)findViewById(R.id.txtDescripcion_DescVideo);
+                    Usuario usuario = ManejadorUsuario.usuario;
+                    Date fechaDesbloqueo;
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                    try {
+                        fechaDesbloqueo = format.parse(fecha_desb.getText().toString());
+                        Log.e("asda","NONONO"+fechaDesbloqueo);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        fechaDesbloqueo=null;
+                        Log.e("asda","NONONO");
+                    }
+                    Video video = new Video(idVideo,usuario,null,fechaDesbloqueo,permiso,ubicacion,titulo.getText().toString(),descripcion.getText().toString());
+                    Boolean res = ManejadorVideo.descripcionVideo(video);
+                    if(res)
+                    {
+                        Toast.makeText(DescripcionVideo.this,"Se subio el video exitosamente",Toast.LENGTH_LONG).show();
+                        finish();
+                    }else
+                    {
+                        Toast.makeText(DescripcionVideo.this,"Lo sentimos ocurrio un error, vuelve a intentarlo mas tarde",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                }
+            }
+        });
     }
 
     public void showDialogOnButtonClick()
@@ -145,9 +191,6 @@ public class DescripcionVideo extends Activity {
         return fechaDate;
     }
 
-
-
-
     private DatePickerDialog.OnDateSetListener dpickerListner= new DatePickerDialog.OnDateSetListener()
     {
         @Override
@@ -158,7 +201,6 @@ public class DescripcionVideo extends Activity {
             dia_x=dayOfMonth;
             //Date fec = ParseFecha(ano_x + "/" + mes_x + "/" + dia_x);
             fecha_desb.setText(ano_x + "/" + mes_x + "/" + dia_x);
-
         }
     };
 
@@ -180,12 +222,10 @@ public class DescripcionVideo extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

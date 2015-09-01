@@ -51,7 +51,7 @@ public class SubirVideo extends Activity {
 	private VideoView vidPreview;
 	private Button btnUpload;
 	long totalSize = 0;
-	private int id;
+	private int idVideo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -196,7 +196,7 @@ public class SubirVideo extends Activity {
 			}
 			try{
 				responseString = responseString.substring(1);
-				int idVideo = Integer.parseInt(responseString);
+				idVideo = Integer.parseInt(responseString);
 				responseString="";
 			}catch (Exception e)
 			{
@@ -212,6 +212,7 @@ public class SubirVideo extends Activity {
 			if(result=="")
 			{
 				Intent intent = new Intent(SubirVideo.this, DescripcionVideo.class);
+				intent.putExtra("idVideo", idVideo);
 				startActivity(intent);
 				finish();
 			}
