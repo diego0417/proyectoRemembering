@@ -3,6 +3,7 @@ package com.example.diego.inicio2.vistas;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,8 @@ public class DescripcionVideo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_descripcion_video);
+        // PANTALLA EN VERTICAL
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
         final Calendar cal= Calendar.getInstance();
         ano_x= cal.get(Calendar.YEAR);

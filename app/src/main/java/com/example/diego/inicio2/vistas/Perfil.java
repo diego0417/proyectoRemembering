@@ -1,6 +1,7 @@
 package com.example.diego.inicio2.vistas;
 
 import android.app.Fragment;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -33,6 +34,8 @@ public class Perfil extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.f_perfil, container, false);
+        // PANTALLA EN VERTICAL
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
         Drawable originalDrawable = getResources().getDrawable(R.drawable.pipi);
         Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();

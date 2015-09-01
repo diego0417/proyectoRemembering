@@ -1,6 +1,7 @@
 package com.example.diego.inicio2.vistas;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -28,6 +29,8 @@ public class  Amigos extends ActionBarActivity implements ActionBar.TabListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lay_amigos);
+        // PANTALLA EN VERTICAL
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
