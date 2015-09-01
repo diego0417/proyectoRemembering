@@ -18,7 +18,7 @@ public class GrabarVideo extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.lay_grabar, container, false);
         // PANTALLA EN VERTICAL
-        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//
         return rootView;
     }
 }

@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.pm.ActivityInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,8 +22,11 @@ import com.example.diego.inicio2.Entidades.Permiso;
 import com.example.diego.inicio2.Manejadores.ManejadorPermiso;
 import com.example.diego.inicio2.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DescripcionVideo extends Activity {
 
@@ -54,22 +58,24 @@ public class DescripcionVideo extends Activity {
 
 
         spinner=(Spinner) findViewById(R.id.spinnerVisibilidad_DescVideo);
-        String[] permisos= {};
+
 
         ArrayList<Permiso> per = ManejadorPermiso.getAll();
+        String[] permisos= new String[per.size()];
         Log.e("Entre","Entre");
-        int i=0;
+        int i=-1;
         for(Permiso x: per)
         {
             Log.e("SEEEEEE","SEEEEEE");
-
+            i++;
             Log.e("Valor 1","trola  "+x.getDescripcionCorta().toString());
             permisos[i]=x.getDescripcionCorta().toString();
-            i++;
+
 
         }
         Log.e("Sali","Sali");
         ArrayAdapter<String> permi = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,permisos);
+        spinner.setAdapter(permi);
 
 
     }
@@ -98,6 +104,23 @@ public class DescripcionVideo extends Activity {
         }
     }
 
+    public static Date ParseFecha(String fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        Date fechaDate = null;
+        try
+        {
+            fechaDate = formato.parse(fecha);
+        }catch(ParseException ex)
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
+
+
+
+
     private DatePickerDialog.OnDateSetListener dpickerListner= new DatePickerDialog.OnDateSetListener()
     {
         @Override
@@ -106,6 +129,7 @@ public class DescripcionVideo extends Activity {
             ano_x=year;
             mes_x=monthOfYear;
             dia_x=dayOfMonth;
+            //Date fec = ParseFecha(ano_x + "/" + mes_x + "/" + dia_x);
             fecha_desb.setText(ano_x + "/" + mes_x + "/" + dia_x);
 
         }

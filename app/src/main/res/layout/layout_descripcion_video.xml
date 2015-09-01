@@ -37,7 +37,6 @@
         android:hint="Descripción"
         android:inputType="textMultiLine"
         android:lines="5"
-        android:background="@android:color/white"
         android:gravity="top|left"
         android:id="@+id/txtDescripcion_DescVideo"
         android:scrollHorizontally="false"
