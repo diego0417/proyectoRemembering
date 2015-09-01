@@ -47,6 +47,9 @@ public class DescripcionVideo extends Activity {
         // PANTALLA EN VERTICAL
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
+        listo = (Button)findViewById(R.id.btnTerminar_DescVideo);
+
+
         final Calendar cal= Calendar.getInstance();
         ano_x= cal.get(Calendar.YEAR);
         mes_x = cal.get(Calendar.MONTH);
@@ -70,7 +73,6 @@ public class DescripcionVideo extends Activity {
             i++;
             Log.e("Valor 1","trola  "+x.getDescripcionCorta().toString());
             permisos[i]=x.getDescripcionCorta().toString();
-
 
         }
         Log.e("Sali","Sali");
