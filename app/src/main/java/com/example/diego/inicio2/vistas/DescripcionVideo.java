@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.diego.inicio2.Entidades.Permiso;
 import com.example.diego.inicio2.Manejadores.ManejadorPermiso;
@@ -32,6 +34,7 @@ public class DescripcionVideo extends Activity {
 
     Button listo,selecFecha;
     EditText titulo,descripcion,fecha_desb;
+    TextView desc;
 
 
     Spinner spinner;
@@ -61,10 +64,10 @@ public class DescripcionVideo extends Activity {
 
 
         ArrayList<Permiso> per = ManejadorPermiso.getAll();
-        String[] permisos= new String[per.size()];
+        //String[] permisos= new String[per.size()];
         Log.e("Entre","Entre");
         int i=-1;
-        for(Permiso x: per)
+        /*for(Permiso x: per)
         {
             Log.e("SEEEEEE","SEEEEEE");
             i++;
@@ -73,9 +76,31 @@ public class DescripcionVideo extends Activity {
 
 
         }
-        Log.e("Sali","Sali");
-        ArrayAdapter<String> permi = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,permisos);
+        Log.e("Sali","Sali");*/
+        ArrayAdapter<Permiso> permi = new ArrayAdapter<Permiso>(this, android.R.layout.simple_spinner_item,per);
         spinner.setAdapter(permi);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> spinner, View v,
+                                       int arg2, long arg3) {
+
+                Permiso pe = (Permiso) ((Spinner) findViewById(R.id.spinnerVisibilidad_DescVideo)).getSelectedItem();
+                desc= (TextView) findViewById(R.id.txtDescripcionLargaPermiso_DescVideo);
+                desc.setText(pe.getDescripcion());
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+            }
+
+        });
+
+
+
 
 
     }
