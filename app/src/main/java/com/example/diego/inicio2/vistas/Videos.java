@@ -17,5 +17,6 @@ public class Videos extends Fragment{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.lay_videos, container, false);
         return rootView;
+
     }
 }
