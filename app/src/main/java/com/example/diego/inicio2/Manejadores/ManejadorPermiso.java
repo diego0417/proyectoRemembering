@@ -38,7 +38,7 @@ public class ManejadorPermiso {
     static private Permiso armarPermiso(JSONObject data) throws JSONException {
         String descripcion = data.getString("DESCRIPCION");
         String descripcion_corta = data.getString("DESCRIPCION_CORTA");
-        int idPermiso = Integer.parseInt(data.getString("ID_VIDEO"));
+        int idPermiso = Integer.parseInt(data.getString("ID_PERMISO"));
         return new Permiso(idPermiso,descripcion,descripcion_corta);
     }
 

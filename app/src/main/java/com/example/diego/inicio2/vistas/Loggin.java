@@ -14,9 +14,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.diego.inicio2.Entidades.Comunicador;
+import com.example.diego.inicio2.Entidades.Permiso;
 import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.MainActivity;
+import com.example.diego.inicio2.Manejadores.ManejadorPermiso;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
+import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
 public class Loggin extends Activity {
@@ -31,6 +34,16 @@ public class Loggin extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loggin);
+
+        if(ManejadorPermiso.getAll().size()==0)
+        {
+            Toast.makeText(this,"Estoy vacion",Toast.LENGTH_LONG).show();
+        }else
+        {
+            Permiso x = ManejadorPermiso.getAll().get(0);
+            Toast.makeText(this,x.getDescripcionCorta(),Toast.LENGTH_LONG).show();
+        }
+
 
 
         link = (TextView) findViewById(R.id.linkAReg_Log);
@@ -57,6 +70,7 @@ public class Loggin extends Activity {
                     Intent intent = new Intent(Loggin.this, MainActivity.class);
                     startActivity(intent);
                 }
-            }});
+            }
+        });
     }
 }
