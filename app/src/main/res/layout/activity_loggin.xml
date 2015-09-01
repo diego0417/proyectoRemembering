@@ -78,7 +78,8 @@
                     android:layout_height="wrap_content"
                     android:text="Entrar"
                     android:layout_gravity="center"
-                    android:background="@color/color_secundario"
+
+                    android:background="@drawable/counter_solicitud"
                     android:textColor="@color/color_secundario_contraste"
                     android:id="@+id/btnEntrar_Log" />
 

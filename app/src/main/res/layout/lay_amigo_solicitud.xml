@@ -3,4 +3,81 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/inicio_perfil">
+
+        <com.github.siyamed.shapeimageview.CircularImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:id="@+id/contactos_foto_perfil"
+            android:src="@drawable/prueba2"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Diego Vilette"
+            android:textColor="@color/negro"
+            android:id="@+id/amigos_solicitud_nombre"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="96dp"
+            android:textSize="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="¿quieres ser mi amigo?"
+            android:textColor="@color/counter_text_bg"
+            android:id="@+id/amigos_solicitud_pregunta"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="96dp"
+            android:textSize="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="34dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/amigos_solicitud_botones"
+            android:layout_marginLeft="96dp"
+            android:layout_marginTop="4dp"
+            android:layout_below="@+id/amigos_solicitud_pregunta"
+            android:layout_marginRight="12dp"
+            android:gravity="right"
+            >
+
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="26dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/counter_solicitud"
+                android:text="Si, claro"
+                android:textColor="@color/counter_text_bg"
+                android:id="@+id/amigos_solicitud_btnAceptar" />
+
+            <Button
+                android:layout_width="120dp"
+                android:layout_height="26dp"
+                android:background="@drawable/counter_solicitud_negar"
+                android:text="Mejor no"
+                android:textColor="@color/counter_text_color"
+                android:id="@+id/amigos_solicitud_btnNegar" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
 </LinearLayout>

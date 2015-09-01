@@ -87,6 +87,7 @@ public class  Amigos extends ActionBarActivity implements ActionBar.TabListener,
 
     @Override
     public void onPageSelected(int position) {
+        getSupportActionBar().setSelectedNavigationItem(position);
 
     }
 
@@ -97,7 +98,7 @@ public class  Amigos extends ActionBarActivity implements ActionBar.TabListener,
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
-
+        mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
