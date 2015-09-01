@@ -1,6 +1,7 @@
 package com.example.diego.inicio2.vistas;
 
 import android.app.Fragment;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -11,17 +12,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.Conexion.ImageLoad;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
 
 /**
  * Created by diego on 8/14/2015.
  */
 public class Perfil extends Fragment {
+    TextView mail;
+    TextView nombreCompleto;
+    TextView sexo;
+    TextView fecha;
+    ImageView imageView;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.f_perfil, container, false);
+        // PANTALLA EN VERTICAL
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
         Drawable originalDrawable = getResources().getDrawable(R.drawable.pipi);
         Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
@@ -35,10 +49,9 @@ public class Perfil extends Fragment {
         //asignamos el CornerRadius
         roundedDrawable.setCornerRadius(originalBitmap.getWidth());
 
-        ImageView imageView = (ImageView)(rootView).findViewById(R.id.imgUsuario_MiPerfil);
+        imageView = (ImageView)(rootView).findViewById(R.id.imgUsuario_MiPerfil);
 
         imageView.setImageDrawable(roundedDrawable);
-
 
         return rootView;
     }

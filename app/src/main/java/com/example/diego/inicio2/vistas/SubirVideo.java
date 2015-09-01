@@ -3,6 +3,9 @@ package com.example.diego.inicio2.vistas;
 import com.example.diego.inicio2.Conexion.AndroidMultiPartEntity;
 import com.example.diego.inicio2.Conexion.AndroidMultiPartEntity.ProgressListener;
 import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.MainActivity;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
+import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
 import java.io.File;
@@ -22,6 +25,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -47,16 +51,18 @@ public class SubirVideo extends Activity {
 	private VideoView vidPreview;
 	private Button btnUpload;
 	long totalSize = 0;
-
+	private int id;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.lay_upload_video);
+		// PANTALLA EN VERTICAL
+		this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 		txtPercentage = (TextView) findViewById(R.id.txtPercentage);
 		btnUpload = (Button) findViewById(R.id.btnUpload);
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		vidPreview = (VideoView) findViewById(R.id.videoPreview);
-
+		//id = ManejadorVideo.insertarVideo();
 		// Changing action bar background color
 		//getActionBar().setBackgroundDrawable(
 		//		new ColorDrawable(Color.parseColor(getResources().getString(
@@ -87,7 +93,6 @@ public class SubirVideo extends Activity {
 				new UploadFileToServer().execute();
 			}
 		});
-
 	}
 
 	/**
@@ -165,9 +170,9 @@ public class SubirVideo extends Activity {
 				entity.addPart("image", new FileBody(sourceFile));
 
 				// Extra parameters if you want to pass to server
-				entity.addPart("website",
-						new StringBody("www.androidhive.info"));
-				entity.addPart("email", new StringBody("abc@gmail.com"));
+				entity.addPart("ID_USUARIO",
+						new StringBody(Integer.toString(ManejadorUsuario.usuario.getIdUsuario())));
+				//entity.addPart("email", new StringBody("abc@gmail.com"));
 
 				totalSize = entity.getContentLength();
 				httppost.setEntity(entity);
@@ -184,27 +189,39 @@ public class SubirVideo extends Activity {
 					responseString = "Error occurred! Http Status Code: "
 							+ statusCode;
 				}
-
 			} catch (ClientProtocolException e) {
 				responseString = e.toString();
 			} catch (IOException e) {
 				responseString = e.toString();
 			}
-
+			try{
+				responseString = responseString.substring(1);
+				int idVideo = Integer.parseInt(responseString);
+				responseString="";
+			}catch (Exception e)
+			{
+				responseString="me rompi la colita";
+			}
 			return responseString;
-
 		}
 
 		@Override
 		protected void onPostExecute(String result) {
 			Log.e(TAG, "Response from server: " + result);
-
 			// showing the server response in an alert dialog
-			showAlert(result);
-
-			super.onPostExecute(result);
+			if(result=="")
+			{
+				Intent intent = new Intent(SubirVideo.this, DescripcionVideo.class);
+				startActivity(intent);
+				finish();
+			}
+			else
+			{
+				showAlert(result);
+			}
+			//Intent i = new Intent(this,GrabarVideo.class);
+			//super.onPostExecute(result);
 		}
-
 	}
 
 	/**
