@@ -3,8 +3,6 @@ package com.example.diego.inicio2.vistas;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,13 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.diego.inicio2.Entidades.Comunicador;
-import com.example.diego.inicio2.Entidades.Permiso;
-import com.example.diego.inicio2.Entidades.Usuario;
+import com.example.diego.inicio2.Conexion.GPS;
 import com.example.diego.inicio2.MainActivity;
-import com.example.diego.inicio2.Manejadores.ManejadorPermiso;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
-import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
 public class Loggin extends Activity {
@@ -35,16 +29,11 @@ public class Loggin extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loggin);
 
-        if(ManejadorPermiso.getAll().size()==0)
-        {
-            Toast.makeText(this,"Estoy vacion",Toast.LENGTH_LONG).show();
-        }else
-        {
-            Permiso x = ManejadorPermiso.getAll().get(0);
-            Toast.makeText(this,x.getDescripcionCorta(),Toast.LENGTH_LONG).show();
-        }
 
-
+        /*GPS gps = new GPS(this);
+        double latitude = gps.getLatitude();
+        double longitude = gps.getLongitude();
+        */
 
         link = (TextView) findViewById(R.id.linkAReg_Log);
         link.setOnClickListener(new View.OnClickListener() {

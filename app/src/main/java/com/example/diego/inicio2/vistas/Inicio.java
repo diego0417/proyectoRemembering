@@ -59,7 +59,7 @@ public class Inicio extends Fragment {
     private void cargarVideos()
     {
         //Log.i("saf", "PUTAAA funcion cargar video");
-        lista = ManejadorVideo.getAllVideos();
+        lista = ManejadorVideo.getVideosInicio();
         //Log.i("saf", "PUTAAA termine funcion cargar video" + lista.toString());
         //lista.add(new Video(1,null,null,null,null,null,"hola","hola"));
         //lista.add(new Video(1,null,null,null,null,null,"hola2","hola2"));
