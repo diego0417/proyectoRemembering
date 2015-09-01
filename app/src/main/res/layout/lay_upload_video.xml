@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:paddingLeft="20dp"
-        android:drawableLeft="@drawable/uploadVideo"
+        android:drawableLeft="@drawable/uploadvideo"
         android:background="#0277bd"
         android:paddingRight="20dp"
         android:text="COMPARTIR VIDEO"
