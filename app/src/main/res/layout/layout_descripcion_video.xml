@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="300dp"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/relat_desc_raro_title"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Descripcion de Video"
+            android:textSize="20dp"
+            android:textColor="@color/negro"
+            android:id="@+id/textView2" />
+    </RelativeLayout>
+
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/titulo_video"
-        android:layout_marginStart="51dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:id="@+id/imageViewTitulo"
-        android:layout_alignParentTop="true"
+
+        android:layout_below="@+id/relat_desc_raro_title"
         android:layout_alignParentStart="true" />
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:hint="Título"
-        android:layout_alignTop="@+id/imageViewTitulo"
-        android:layout_toEndOf="@+id/imageViewTitulo"
-        android:layout_marginStart="38dp"
+        android:layout_toRightOf="@+id/imageViewTitulo"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:id="@+id/txtTitulo_DescVideo"
+        android:layout_below="@+id/relat_desc_raro_title"
         android:maxLength="30"
         android:singleLine="true"
         />
@@ -29,10 +48,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/descripcion"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/imageView5"
-        android:layout_below="@+id/txtTitulo_DescVideo"
-        android:layout_toStartOf="@+id/txtTitulo_DescVideo" />
+        android:layout_below="@+id/imageViewTitulo"
+        android:layout_marginLeft="16dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -53,11 +72,11 @@
         android:src="@drawable/calendar"
         android:id="@+id/imageView6"
         android:layout_below="@+id/txtDescripcion_DescVideo"
-        android:layout_toStartOf="@+id/txtTitulo_DescVideo"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="12dp"/>
 
     <EditText
-        android:layout_width="match_parent"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:text="Publicar Ahora"
         android:id="@+id/txtFechaDesbloqueo_DescVideo"
@@ -66,65 +85,74 @@
         android:layout_alignStart="@+id/txtDescripcion_DescVideo" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="30dp"
         android:text="Selecciona Fecha"
         android:id="@+id/btnFecha_DescVideo"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/counter_solicitud"
-        android:textColor="#ffffff"
+        android:textColor="@color/color_secundario_contraste"
         android:layout_alignStart="@+id/txtFechaDesbloqueo_DescVideo"
         android:layout_below="@+id/txtFechaDesbloqueo_DescVideo" />
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-
         android:layout_below="@+id/btnFecha_DescVideo"
-        android:layout_alignStart="@+id/imageView6"
-        android:id="@+id/radioGroup">
+        android:layout_marginTop="16dp"
+        android:id="@+id/relat_desc_raro">
 
-    </RadioGroup>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/visibilidad"
+            android:id="@+id/imageView7"
+            android:layout_marginTop="16dp" />
 
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerVisibilidad_DescVideo"
+            android:hint= "Visibilidad"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/imageView7"
+            />
 
-    <ImageView
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/txtDescripcionLargaPermiso_DescVideo"
+            android:layout_below="@+id/spinnerVisibilidad_DescVideo"
+            android:layout_toRightOf="@+id/imageView7"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+             />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/visibilidad"
-        android:id="@+id/imageView7"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignStart="@+id/radioGroup"
-        android:layout_marginTop="28dp" />
+        android:layout_below="@+id/relat_desc_raro"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LISTO"
-        android:id="@+id/btnTerminar_DescVideo"
-        android:background="@drawable/counter_solicitud"
-        android:textColor="#ffffff"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/btnFecha_DescVideo"
-        android:layout_marginBottom="32dp" />
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="LISTO"
+            android:id="@+id/btnTerminar_DescVideo"
+            android:background="@drawable/counter_solicitud"
+            android:textColor="@color/color_secundario_contraste"
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerVisibilidad_DescVideo"
-        android:hint= "Visibilidad"
-        android:layout_alignEnd="@+id/radioGroup"
-        android:layout_alignStart="@+id/btnFecha_DescVideo"
-        android:layout_alignTop="@+id/imageView7" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:id="@+id/txtDescripcionLargaPermiso_DescVideo"
-        android:layout_below="@+id/spinnerVisibilidad_DescVideo"
-        android:layout_above="@+id/btnTerminar_DescVideo"
-        android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/spinnerVisibilidad_DescVideo" />
+             />
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
