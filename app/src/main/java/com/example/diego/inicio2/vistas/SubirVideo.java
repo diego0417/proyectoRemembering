@@ -42,7 +42,7 @@ import android.widget.VideoView;
 
 public class SubirVideo extends Activity {
 	// LogCat tag
-	private static final String TAG = "buenas";
+	private static final String TAG = "buenas :)";
 
 	private ProgressBar progressBar;
 	private String filePath = null;
