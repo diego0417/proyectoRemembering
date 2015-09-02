@@ -112,6 +112,8 @@ public class Solicitudes extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ManejadorUsuario.aceptarSolicitud(usuarioActual.getIdUsuario());
+                    cargarSolicitudes();
+                    cargarvistas();
                 }
             });
 
@@ -120,6 +122,8 @@ public class Solicitudes extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ManejadorUsuario.cancelarSolicitud(usuarioActual.getIdUsuario());
+                    cargarSolicitudes();
+                    cargarvistas();
                 }
             });
 
