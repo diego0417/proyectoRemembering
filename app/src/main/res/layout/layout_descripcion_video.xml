@@ -20,7 +20,8 @@
         android:layout_toEndOf="@+id/imageViewTitulo"
         android:layout_marginStart="38dp"
         android:id="@+id/txtTitulo_DescVideo"
-        android:maxLength="15"
+        android:maxLength="30"
+        android:singleLine="true"
         />
 
 

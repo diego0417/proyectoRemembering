@@ -34,6 +34,7 @@ import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -188,6 +189,17 @@ public class DescripcionVideo extends Activity {
         return fechaDate;
     }
 
+    private static boolean compararFechas(Date fec) {
+        Date fechaActual = new Date();
+        Date fechaelegida = fec;
+
+
+
+
+        return true;
+
+    }
+
     private DatePickerDialog.OnDateSetListener dpickerListner= new DatePickerDialog.OnDateSetListener()
     {
         @Override
@@ -196,8 +208,24 @@ public class DescripcionVideo extends Activity {
             ano_x=year;
             mes_x=monthOfYear;
             dia_x=dayOfMonth;
-            //Date fec = ParseFecha(ano_x + "/" + mes_x + "/" + dia_x);
-            fecha_desb.setText(ano_x + "/" + mes_x + "/" + dia_x);
+            Date fec = ParseFecha(ano_x + "/" + mes_x + "/" + dia_x);
+            Toast.makeText(DescripcionVideo.this,fec+"",Toast.LENGTH_LONG).show();
+            /*if(compararFechas(fec))
+            {
+                Toast.makeText(DescripcionVideo.this,"ESTA BIEN",Toast.LENGTH_LONG).show();
+                fecha_desb.setText(ano_x + "/" + mes_x + "/" + dia_x);
+            }else
+            {
+
+                Toast.makeText(DescripcionVideo.this,"MALO MALO ERES",Toast.LENGTH_LONG).show();
+                //Toast.makeText(DescripcionVideo.this,,Toast.LENGTH_LONG).show();
+                //Date fechaActual = new Date();
+                //fecha_desb.setText(fechaActual.getYear() + "/" + fechaActual.getMonth() + "/" + fechaActual.getDay());
+
+
+            }*/
+
+
         }
     };
 
