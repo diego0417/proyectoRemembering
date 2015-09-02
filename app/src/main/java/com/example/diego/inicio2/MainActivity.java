@@ -79,7 +79,14 @@ public class MainActivity extends Activity {
         // Grabar
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         // Contactos
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, "2"));
+        int solicitudes = ManejadorUsuario.cuentaSolicitudes();
+        if (solicitudes != 0){
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1), true, Integer.toString(solicitudes)));
+        }else
+        {
+            navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+        }
+
         //ver Videos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
         // cerrar sesion
