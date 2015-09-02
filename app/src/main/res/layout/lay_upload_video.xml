@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:visibility="visible"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:layout_weight="0.29"
         />
 
@@ -40,7 +40,8 @@
         android:layout_gravity="center_horizontal"
         android:paddingLeft="20dp"
         android:drawableLeft="@drawable/uploadvideo"
-        android:background="@color/color_secundario"
+
+        android:background="@drawable/counter_solicitud"
         android:textColor="#ffffff"
 
 
