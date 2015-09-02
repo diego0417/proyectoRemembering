@@ -137,16 +137,16 @@
         android:layout_height="50dp"
         android:id="@+id/btnAceptarSolicitud_PerfilAmigo"
         android:background="@drawable/btn_aceptar"
-        android:layout_alignBottom="@+id/textView5"
-        android:layout_alignStart="@+id/btnbloquear_PerfilAmigo" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/background_Friend" />
 
     <Button
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/btnbloquear_PerfilAmigo"
         android:background="@drawable/btn_bloquear"
-        android:layout_above="@+id/imageView4"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/btnAgregarAmigo_PerfilAmigo" />
 
 
 </RelativeLayout>
