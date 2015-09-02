@@ -228,7 +228,7 @@ public class ManejadorUsuario {
         String apellido = data.getString("APELLIDO");
         String mail = data.getString("MAIL");
         int id = Integer.parseInt(data.getString("ID_USUARIO"));
-        Boolean sexo = Boolean.parseBoolean(data.getString("SEXO"));
+        Boolean sexo = !Boolean.parseBoolean(data.getString("SEXO"));
         return new Usuario(id,mail,nombre,apellido,fecha,sexo,"");
     }
 

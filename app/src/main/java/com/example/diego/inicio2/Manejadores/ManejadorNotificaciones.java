@@ -33,7 +33,6 @@ public class ManejadorNotificaciones {
                 .setAutoCancel(true)
                 .setProgress(maxProgress,currentProgress,false)
                 .setContentText(mensaje);
-
         if(currentProgress==1){
             builder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
         }

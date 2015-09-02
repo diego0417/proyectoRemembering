@@ -99,18 +99,21 @@ public class PerfilAmigo extends Activity {
             @Override
             public void onClick(View v) {
                 ManejadorUsuario.aceptarSolicitud(idAmigo);
+                finish();
             }
         });
         bloquear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ManejadorUsuario.cancelarSolicitud(idAmigo);
+                finish();
             }
         });
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ManejadorUsuario.agregarSolicitud(idAmigo);
+                finish();
             }
         });
 
