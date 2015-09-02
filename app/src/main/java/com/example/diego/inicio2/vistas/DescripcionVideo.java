@@ -46,7 +46,7 @@ public class DescripcionVideo extends Activity {
     Button listo,selecFecha;
     EditText titulo,descripcion,fecha_desb;
     TextView desc;
-
+    Calendar def;
 
     Spinner spinner;
 
@@ -62,7 +62,7 @@ public class DescripcionVideo extends Activity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
 
-
+        def =Calendar.getInstance();
         final Calendar cal= Calendar.getInstance();
         ano_x= cal.get(Calendar.YEAR);
         mes_x = cal.get(Calendar.MONTH);
@@ -70,6 +70,7 @@ public class DescripcionVideo extends Activity {
         fecha_desb = (EditText) findViewById(R.id.txtFechaDesbloqueo_DescVideo);
         fecha_desb.setEnabled(false);
         showDialogOnButtonClick();
+
 
 
 
@@ -189,16 +190,7 @@ public class DescripcionVideo extends Activity {
         return fechaDate;
     }
 
-    private static boolean compararFechas(Date fec) {
-        Date fechaActual = new Date();
-        Date fechaelegida = fec;
 
-
-
-
-        return true;
-
-    }
 
     private DatePickerDialog.OnDateSetListener dpickerListner= new DatePickerDialog.OnDateSetListener()
     {
@@ -206,10 +198,53 @@ public class DescripcionVideo extends Activity {
         public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth)
         {
             ano_x=year;
-            mes_x=monthOfYear;
+            mes_x=monthOfYear+1;
             dia_x=dayOfMonth;
-            Date fec = ParseFecha(ano_x + "/" + mes_x + "/" + dia_x);
-            Toast.makeText(DescripcionVideo.this,fec+"",Toast.LENGTH_LONG).show();
+
+            /* FECHA ACTUAL Y SELECCIONADA*/
+            Calendar c = Calendar.getInstance();
+            System.out.println("Current time => " + c.getTime());
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaactual = df.format(c.getTime());
+
+            String fechaSeleccionada=ano_x + "-" + mes_x + "-" + dia_x;
+
+            /*------------------------------*/
+
+            Date date=null;
+            Date date2=null;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                date = format.parse(fechaactual);
+                date2 = format.parse(fechaSeleccionada);
+
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            if(date.compareTo(date2)>0)
+            {
+                Toast.makeText(DescripcionVideo.this,date+" > "+date2,Toast.LENGTH_LONG).show();
+            }else
+            {
+                if(date.compareTo(date2)<0)
+                {
+                    Toast.makeText(DescripcionVideo.this,date+" < "+date2,Toast.LENGTH_LONG).show();
+                }else
+                {
+                    Toast.makeText(DescripcionVideo.this,date+" = "+date2,Toast.LENGTH_LONG).show();
+                }
+            }
+
+
+
+
+
+
+
+
             /*if(compararFechas(fec))
             {
                 Toast.makeText(DescripcionVideo.this,"ESTA BIEN",Toast.LENGTH_LONG).show();
