@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="match_parent"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:id="@+id/amigos_buscar"
@@ -27,7 +27,17 @@
         android:layout_marginLeft="72dp"
         android:layout_marginTop="16dp"
         android:hint="Buscar un Amigo..."
-        android:id="@+id/editText" />
+        android:id="@+id/amigos_buscar_tbBuscar" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_buscar_amigos"
+        android:layout_below="@+id/amigos_buscar_tbBuscar"
+        android:layout_marginTop="8dp"
+        android:scrollbars="none"
+        >
+
+    </ListView>
 
 
 </RelativeLayout>

@@ -4,9 +4,7 @@ import android.util.Log;
 
 
 import com.example.diego.inicio2.Conexion.Conexion;
-import com.example.diego.inicio2.Conexion.GPS;
 import com.example.diego.inicio2.Conexion.MYSQL_Request;
-import com.example.diego.inicio2.Entidades.Ubicacion;
 import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.Entidades.Video;
 
@@ -106,7 +104,7 @@ public class ManejadorVideo {
         String titulo = data.getString("TITULO");
         String descripcion = data.getString("DESCRIPCION");
         int idVideo = Integer.parseInt(data.getString("ID_VIDEO"));
-        Usuario usuario = ManejadorUsuario.clienteId(Integer.parseInt(data.getString("ID_USUARIO")));
+        Usuario usuario = ManejadorUsuario.usuarioId(Integer.parseInt(data.getString("ID_USUARIO")));
         return new Video(idVideo,usuario,null,null,null,null,titulo,descripcion);
     }
 }

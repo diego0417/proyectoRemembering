@@ -95,12 +95,9 @@ public class DescripcionVideo extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> spinner, View v,
                                        int arg2, long arg3) {
-
                 Permiso pe = (Permiso) ((Spinner) findViewById(R.id.spinnerVisibilidad_DescVideo)).getSelectedItem();
                 desc = (TextView) findViewById(R.id.txtDescripcionLargaPermiso_DescVideo);
                 desc.setText(pe.getDescripcion());
-
-
             }
 
             @Override
@@ -218,11 +215,7 @@ public class DescripcionVideo extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

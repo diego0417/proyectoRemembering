@@ -2,14 +2,21 @@ package com.example.diego.inicio2.Manejadores;
 
 
 
+import android.net.ParseException;
+import android.util.Log;
+
 import com.example.diego.inicio2.Conexion.Conexion;
 import com.example.diego.inicio2.Conexion.MYSQL_Request;
 import com.example.diego.inicio2.Entidades.Usuario;
+import com.example.diego.inicio2.Entidades.Video;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by Matias Sosa on 8/13/2015.
@@ -36,7 +43,52 @@ public class ManejadorUsuario {
         return res;
     }
 
-    static public Usuario clienteId(int id)
+    static public ArrayList<Usuario> getMisAmigos()
+    {
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("call misAmigos("+ManejadorUsuario.usuario.getIdUsuario()+");");
+        request.getServerData();
+        while (request.getNextEntry()) {
+            JSONObject data = request.getJsonValue();
+            try {
+                lista.add(armarAmigos(data));
+            } catch (Exception e) {}
+        }
+        return lista;
+    }
+
+    static public ArrayList<Usuario> getBuscarAmigos(String buscar)
+    {
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("call buscarAmigos('"+buscar+"');");
+        request.getServerData();
+        while (request.getNextEntry()) {
+            JSONObject data = request.getJsonValue();
+            try {
+                lista.add(armarAmigos(data));
+            } catch (Exception e) {}
+        }
+        return lista;
+    }
+
+    static public ArrayList<Usuario> getMisSolicitudes()
+    {
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("call misSolicitudes("+ManejadorUsuario.usuario.getIdUsuario()+");");
+        request.getServerData();
+        while (request.getNextEntry()) {
+            JSONObject data = request.getJsonValue();
+            try {
+                lista.add(armarAmigos(data));
+            } catch (Exception e) {}
+        }
+        return lista;
+    }
+
+    static public Usuario usuarioId(int id)
     {
         MYSQL_Request request = Conexion.nuevaConexion();
         request.setRequest("SELECT * FROM usuario WHERE id_usuario='"+id+"';");
@@ -53,13 +105,13 @@ public class ManejadorUsuario {
     }
 
     static private Usuario armarUsuario(JSONObject data) throws JSONException {
-        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha = null;
-        //try {
-          //  fecha = formatter.parse(data.getString("FECHA"));
-        //} catch (ParseException e) {
-          //  e.printStackTrace();
-        //}
+        try {
+            fecha = formatter.parse(data.getString("FECHA"));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
 
         String nombre = data.getString("NOMBRE");
         String apellido = data.getString("APELLIDO");
@@ -68,6 +120,22 @@ public class ManejadorUsuario {
         Boolean sexo = Boolean.parseBoolean(data.getString("SEXO"));
         String pass = data.getString("PASS");
         return new Usuario(id,mail,nombre,apellido,fecha,sexo,pass);
+    }
+
+    static private Usuario armarAmigos(JSONObject data) throws JSONException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date fecha = null;
+        try {
+          fecha = formatter.parse(data.getString("FECHA"));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        String nombre = data.getString("NOMBRE");
+        String apellido = data.getString("APELLIDO");
+        String mail = data.getString("MAIL");
+        int id = Integer.parseInt(data.getString("ID_USUARIO"));
+        Boolean sexo = Boolean.parseBoolean(data.getString("SEXO"));
+        return new Usuario(id,mail,nombre,apellido,fecha,sexo,"");
     }
 
 
@@ -86,6 +154,40 @@ public class ManejadorUsuario {
         {
             return true;
         }
+    }
+
+    static public Boolean aceptarSolicitud(int id)
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        HashMap<String, String> values = new HashMap<String, String>();
+
+        values.put("ESTADO", "1");
+        Boolean res= true;
+        try
+        {
+            request.setRequestUpdate("amigos",values,"ID_USUARIO_PEDIDO = '"+id+"' and ID_USUARIO_RES="+ManejadorUsuario.usuario.getIdUsuario());
+            request.executeRequest();
+        }catch (Exception e){
+            res = false;
+        }
+        return res;
+    }
+
+    static public Boolean cancelarSolicitud(int id)
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        HashMap<String, String> values = new HashMap<String, String>();
+
+        values.put("ESTADO", "2");
+        Boolean res= true;
+        try
+        {
+            request.setRequestUpdate("amigos",values,"ID_USUARIO_PEDIDO = '"+id+"' and ID_USUARIO_RES="+ManejadorUsuario.usuario.getIdUsuario());
+            request.executeRequest();
+        }catch (Exception e){
+            res = false;
+        }
+        return res;
     }
 
 }
