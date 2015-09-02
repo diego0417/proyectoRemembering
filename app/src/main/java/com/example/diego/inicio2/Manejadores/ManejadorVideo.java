@@ -4,13 +4,16 @@ import android.util.Log;
 
 
 import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.Conexion.GPS;
 import com.example.diego.inicio2.Conexion.MYSQL_Request;
+import com.example.diego.inicio2.Entidades.Ubicacion;
 import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.Entidades.Video;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -80,20 +83,18 @@ public class ManejadorVideo {
     {
         MYSQL_Request request = Conexion.nuevaConexion();
         HashMap<String, String> values = new HashMap<String, String>();
-        values.put("FECHA_DESBLOQUEO", video.getFechaDesbloqueo().toString());
-        values.put("ID_PERMISO", Integer.toString(video.getPermiso().getIdPermiso()));
-        if(video.getUbicacion()==null)
-        {
-            values.put("ID_UBICACION", "NULL");
-        }else{
-            values.put("ID_UBICACION", Integer.toString(video.getUbicacion().getIdUbicacion()));
-        }
 
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+
+        values.put("FECHA_DESBLOQUEO", format.format(video.getFechaDesbloqueo()));
+        values.put("ID_PERMISO", Integer.toString(video.getPermiso().getIdPermiso()));
+        values.put("ID_UBICACION", Integer.toString(video.getUbicacion().getIdUbicacion()));
         values.put("TITULO", video.getTitulo());
         values.put("DESCRIPCION", video.getDescripcion());
         Boolean res= true;
         try
         {
+            request.setRequestUpdate("video",values,"ID_VIDEO = '"+video.getIdVideo()+"'");
             request.executeRequest();
         }catch (Exception e){
             res = false;
@@ -106,7 +107,6 @@ public class ManejadorVideo {
         String descripcion = data.getString("DESCRIPCION");
         int idVideo = Integer.parseInt(data.getString("ID_VIDEO"));
         Usuario usuario = ManejadorUsuario.clienteId(Integer.parseInt(data.getString("ID_USUARIO")));
-
         return new Video(idVideo,usuario,null,null,null,null,titulo,descripcion);
     }
 }
