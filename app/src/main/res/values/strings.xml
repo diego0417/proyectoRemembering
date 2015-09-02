@@ -53,6 +53,7 @@
     <string name="title_activity_crear_cuenta">CrearCuenta</string>
     <string name="title_activity_reproducir_video">ReproducirVideo</string>
     <string name="title_activity_descripcion_video">DescripcionVideo</string>
+    <string name="title_activity_perfil_amigo">perfilAmigo</string>
 
 
 
