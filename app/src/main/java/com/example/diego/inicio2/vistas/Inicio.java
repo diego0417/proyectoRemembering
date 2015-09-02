@@ -22,6 +22,7 @@ import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -111,6 +112,14 @@ public class Inicio extends Fragment {
             TextView texto2 = (TextView) itenview.findViewById(R.id.inicio_perfil_nombre);
             texto2.setText(videoActual.getUsuario().getNombre());
 
+            TextView texto3 = (TextView) itenview.findViewById(R.id.inicio_perfil_fecha);
+
+            Date actual = new java.util.Date();
+            Date deVideo = videoActual.getFechaDesbloqueo();
+            texto3.setText(calculaTiempo(actual, deVideo));
+
+
+
             /*
             //PROBANDO SIN CONEXION
             TextView texto1 = (TextView) itenview.findViewById(R.id.inicio_descripcion_titulo);
@@ -120,5 +129,51 @@ public class Inicio extends Fragment {
 
         }
     }
+
+
+    private String calculaTiempo(Date actual,Date vieja){
+
+
+        if(vieja == null){
+            return "???";
+        }
+
+        //los milisegundos
+        long diferenciaMils = actual.getTime() - vieja.getTime();
+
+        //obtenemos los segundos
+        long segundos = diferenciaMils / 1000;
+
+        if(segundos>50){
+            //obtenemos los minutos
+            long minutos = segundos /60;
+            if(minutos>58){
+                //obtenemos las horas
+                long horas = minutos / 60;
+                if(minutos> 1390){
+                    //obtenemos las dias
+                    long dias = horas / 24;
+                    if(dias>29){
+                        //obtenemos los mes
+
+                        return "very old";
+                    }else
+                    {
+                        return Long.toString(dias)+" dias";
+                    }
+
+                }else {
+                    return Long.toString(horas)+" hs";
+                }
+            }else{
+                return Long.toString(minutos)+" min";
+            }
+        }else
+        {
+            return Long.toString(segundos)+" seg";
+        }
+
+    }
+
 
 }

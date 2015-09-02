@@ -108,6 +108,7 @@ public class CamaraGaleria extends Activity {
         Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, MEDIA_TYPE_VIDEO);
         fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+        intent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // start the video capture Intent
         startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
 
