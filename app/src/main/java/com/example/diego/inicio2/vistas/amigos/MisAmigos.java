@@ -1,11 +1,14 @@
 package com.example.diego.inicio2.vistas.amigos;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -16,6 +19,7 @@ import com.example.diego.inicio2.Conexion.ImageLoad;
 import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
+import com.example.diego.inicio2.vistas.PerfilAmigo;
 
 import java.util.ArrayList;
 
@@ -24,7 +28,6 @@ import java.util.ArrayList;
  */
 public class MisAmigos extends Fragment{
     View rootView;
-    public ArrayList<String> url = new ArrayList<String>();
     private ArrayList<Usuario> lista = new ArrayList<Usuario>();
     ListView lv;
 
@@ -37,17 +40,16 @@ public class MisAmigos extends Fragment{
 
         cargarAmigos();
         cargarvistas();
-        /*
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;
-                intent = new Intent(rootView.getContext(), ReproducirVideo.class);
-
-                intent.putExtra("url", url.get(position));
+                intent = new Intent(rootView.getContext(), PerfilAmigo.class);
+                intent.putExtra("idAmigo", lista.get(position).getIdUsuario());
                 startActivity(intent);
             }
-        });*/
+        });
 
         return rootView;
     }

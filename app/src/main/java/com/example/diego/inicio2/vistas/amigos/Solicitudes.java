@@ -1,5 +1,6 @@
 package com.example.diego.inicio2.vistas.amigos;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,6 +29,7 @@ import com.example.diego.inicio2.Manejadores.ManejadorUbicacion;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
+import com.example.diego.inicio2.vistas.PerfilAmigo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,18 +55,15 @@ public class Solicitudes extends Fragment {
         cargarSolicitudes();
         cargarvistas();
 
-        /*
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;
-                intent = new Intent(rootView.getContext(), ReproducirVideo.class);
-
-                intent.putExtra("url", url.get(position));
+                intent = new Intent(rootView.getContext(), PerfilAmigo.class);
+                intent.putExtra("idAmigo", lista.get(position).getIdUsuario());
                 startActivity(intent);
-
             }
-        });*/
+        });
 
 
 

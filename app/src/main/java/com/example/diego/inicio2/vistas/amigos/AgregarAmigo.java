@@ -1,13 +1,16 @@
 package com.example.diego.inicio2.vistas.amigos;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,6 +22,8 @@ import com.example.diego.inicio2.Conexion.ImageLoad;
 import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
+import com.example.diego.inicio2.vistas.Amigos;
+import com.example.diego.inicio2.vistas.PerfilAmigo;
 
 import java.util.ArrayList;
 
@@ -57,16 +62,16 @@ public class AgregarAmigo extends Fragment{
             }
         });
 
-        /*lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;
-                intent = new Intent(rootView.getContext(), ReproducirVideo.class);
-
-                intent.putExtra("url", url.get(position));
+                intent = new Intent(rootView.getContext(), PerfilAmigo.class);
+                Log.i("safasfa", "jejeje" + lista.get(position).getIdUsuario());
+                intent.putExtra("idAmigo", lista.get(position).getIdUsuario());
                 startActivity(intent);
             }
-        });*/
+        });
 
         return rootView;
     }
@@ -107,18 +112,18 @@ public class AgregarAmigo extends Fragment{
             }
 
             Usuario usuarioActual =lista.get(position);
+            if(usuarioActual!=null) {
+                ImageView img2 = (ImageView) itenview.findViewById(R.id.contactos_foto_perfil);
+                new ImageLoad(Conexion.MI_IP + "FotosPerfil/" + usuarioActual.getIdUsuario() + ".jpg", img2).execute();
 
-            ImageView img2 = (ImageView)itenview.findViewById(R.id.contactos_foto_perfil);
-            new ImageLoad(Conexion.MI_IP+"FotosPerfil/"+usuarioActual.getIdUsuario()+".jpg", img2).execute();
+                TextView texto = (TextView) itenview.findViewById(R.id.contactos_perfil_nombre);
+                texto.setText(usuarioActual.getNombre() + " " + usuarioActual.getApellido());
 
-            TextView texto = (TextView) itenview.findViewById(R.id.contactos_perfil_nombre);
-            texto.setText(usuarioActual.getNombre()+" "+usuarioActual.getApellido());
-
-            /*
-            //PROBANDO SIN CONEXION
-            TextView texto1 = (TextView) itenview.findViewById(R.id.inicio_descripcion_titulo);
-            texto1.setText(videoActual.getTitulo());*/
-
+                /*
+                //PROBANDO SIN CONEXION
+                TextView texto1 = (TextView) itenview.findViewById(R.id.inicio_descripcion_titulo);
+                texto1.setText(videoActual.getTitulo());*/
+            }
             return itenview;
         }
     }

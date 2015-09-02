@@ -44,6 +44,70 @@ public class ManejadorUsuario {
         return cant;
     }
 
+    static public int nosConocemos(int idAmigo)
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("call nosConocemos(" + ManejadorUsuario.usuario.getIdUsuario() + "," + idAmigo + ")");
+        request.getServerData();
+        String pedido=null;
+        String res = null;
+        String estado=null;
+        while (request.getNextEntry()) {
+            JSONObject data = request.getJsonValue();
+            try {
+                pedido=data.getString("ID_USUARIO_PEDIDO");
+                res=data.getString("ID_USUARIO_RES");
+                estado=data.getString("ESTADO");
+            } catch (Exception e) {
+            }
+        }
+        int result=0;
+        //0-NADIE ENVIO SOLICITUD DE AMISTAD, 1-NO ME RESPONDIO LA SOLICITUD,2-SOMOS AMIGOS,3-NO ME ACEPTO LA SOLICITUD
+        //4-NO LE RESPONDI LA SOLICITUD,5-NO LE ACEPTE LA SOLICITUD
+        if(pedido==null)
+        {
+            //NADIE ENVIO SOLICITUD DE AMISTAD
+            result=0;
+        }else{
+            if(Integer.parseInt(pedido)==ManejadorUsuario.usuario.getIdUsuario())
+            {
+                //YA PEDI LA SOLICITUD DE AMISTAD
+                if(Integer.parseInt(estado)==0)
+                {
+                    //NO ME RESPONDIO LA SOLICIRTUD DE AMISTAD
+                    result=1;
+                }else{
+                    if(Integer.parseInt(estado)==1)
+                    {
+                        //SOMOS AMIGOS
+                        result=2;
+                    }else{
+                        //NO ME ACEPTO LA SOLICITUD
+                        result=3;
+                    }
+
+                }
+            }else{
+                //EL ME ENVIO LA SOLICITUD
+                if(Integer.parseInt(estado)==0)
+                {
+                    //NO LE RESPONDIO LA SOLICIRTUD DE AMISTAD
+                    result=4;
+                }else{
+                    if(Integer.parseInt(estado)==1)
+                    {
+                        //SOMOS AMIGOS
+                        result=2;
+                    }else{
+                        //NO LE ACEPTO LA SOLICITUD
+                        result=5;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+
 
 
     static private int armarCantidad(JSONObject data) throws JSONException {
@@ -184,6 +248,14 @@ public class ManejadorUsuario {
         {
             return true;
         }
+    }
+
+    static public void agregarSolicitud(int id)
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("INSERT INTO amigos (id_usuario_pedido,id_usuario_res,estado) VALUES ("+ManejadorUsuario.usuario.getIdUsuario()+","+id+","+0+");");
+
+        request.executeRequest();
     }
 
     static public Boolean aceptarSolicitud(int id)
