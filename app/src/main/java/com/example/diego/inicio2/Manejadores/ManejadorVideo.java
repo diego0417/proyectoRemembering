@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -68,7 +69,7 @@ public class ManejadorVideo {
         Usuario usuario = null;
         while (request.getNextEntry()) {
             JSONObject data = request.getJsonValue();
-            Log.i("saf","PUTAAA"+data.toString());
+            Log.i("saf","PUTAAA312"+data.toString());
             try {
                 lista.add(armarVideo(data));
             } catch (Exception e) {
@@ -82,7 +83,7 @@ public class ManejadorVideo {
         MYSQL_Request request = Conexion.nuevaConexion();
         HashMap<String, String> values = new HashMap<String, String>();
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         values.put("FECHA_DESBLOQUEO", format.format(video.getFechaDesbloqueo()));
         values.put("ID_PERMISO", Integer.toString(video.getPermiso().getIdPermiso()));
@@ -105,6 +106,16 @@ public class ManejadorVideo {
         String descripcion = data.getString("DESCRIPCION");
         int idVideo = Integer.parseInt(data.getString("ID_VIDEO"));
         Usuario usuario = ManejadorUsuario.usuarioId(Integer.parseInt(data.getString("ID_USUARIO")));
-        return new Video(idVideo,usuario,null,null,null,null,titulo,descripcion);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDesbloqueo;
+        try {
+            String hora = data.getString("FECHA_DESBLOQUEO");
+            fechaDesbloqueo = format.parse(hora);
+
+        } catch (Exception e) {
+            fechaDesbloqueo = null;
+        }
+
+        return new Video(idVideo,usuario,null,fechaDesbloqueo,null,null,titulo,descripcion);
     }
 }

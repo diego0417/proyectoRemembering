@@ -69,7 +69,7 @@
         android:layout_height="30dp"
         android:text="Selecciona Fecha"
         android:id="@+id/btnFecha_DescVideo"
-        android:background="@color/color_secundario"
+        android:background="@drawable/counter_solicitud"
         android:textColor="#ffffff"
         android:layout_alignStart="@+id/txtFechaDesbloqueo_DescVideo"
         android:layout_below="@+id/txtFechaDesbloqueo_DescVideo" />
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:text="LISTO"
         android:id="@+id/btnTerminar_DescVideo"
-        android:background="@color/color_secundario"
+        android:background="@drawable/counter_solicitud"
         android:textColor="#ffffff"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/btnFecha_DescVideo"

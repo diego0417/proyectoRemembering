@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:background="@color/color_secundario"
+            android:background="@drawable/counter_solicitud"
             android:text="Selecciona"/>
 
 
@@ -80,7 +80,7 @@
 
     <Button android:id="@+id/btnRegister_Reg" android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:background="@color/color_secundario"
+        android:background="@drawable/counter_solicitud"
         android:textColor="@color/color_secundario_contraste"
         android:text="Registrarme"
         android:layout_gravity="center_horizontal" android:paddingLeft="15dip" android:paddingRight="15dip" />
