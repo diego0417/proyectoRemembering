@@ -81,15 +81,7 @@ public class DescripcionVideo extends Activity {
         //String[] permisos= new String[per.size()];
         Log.e("Entre","Entre");
         int i=-1;
-        /*for(Permiso x: per)
-        {
-            Log.e("SEEEEEE","SEEEEEE");
-            i++;
-            Log.e("Valor 1","trola  "+x.getDescripcionCorta().toString());
-            permisos[i]=x.getDescripcionCorta().toString();
 
-        }
-        Log.e("Sali","Sali");*/
         ArrayAdapter<Permiso> permi = new ArrayAdapter<Permiso>(this, android.R.layout.simple_spinner_item,per);
         spinner.setAdapter(permi);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -226,15 +218,17 @@ public class DescripcionVideo extends Activity {
 
             if(date.compareTo(date2)>0)
             {
-                Toast.makeText(DescripcionVideo.this,date+" > "+date2,Toast.LENGTH_LONG).show();
+                Toast.makeText(DescripcionVideo.this,"La fecha de desbloqueo es incorrecta.",Toast.LENGTH_LONG).show();
+                fecha_desb.setText(fechaactual);
             }else
             {
                 if(date.compareTo(date2)<0)
                 {
-                    Toast.makeText(DescripcionVideo.this,date+" < "+date2,Toast.LENGTH_LONG).show();
+                    fecha_desb.setText(fechaSeleccionada);
+
                 }else
                 {
-                    Toast.makeText(DescripcionVideo.this,date+" = "+date2,Toast.LENGTH_LONG).show();
+                    fecha_desb.setText(fechaactual);
                 }
             }
 
@@ -245,20 +239,6 @@ public class DescripcionVideo extends Activity {
 
 
 
-            /*if(compararFechas(fec))
-            {
-                Toast.makeText(DescripcionVideo.this,"ESTA BIEN",Toast.LENGTH_LONG).show();
-                fecha_desb.setText(ano_x + "/" + mes_x + "/" + dia_x);
-            }else
-            {
-
-                Toast.makeText(DescripcionVideo.this,"MALO MALO ERES",Toast.LENGTH_LONG).show();
-                //Toast.makeText(DescripcionVideo.this,,Toast.LENGTH_LONG).show();
-                //Date fechaActual = new Date();
-                //fecha_desb.setText(fechaActual.getYear() + "/" + fechaActual.getMonth() + "/" + fechaActual.getDay());
-
-
-            }*/
 
 
         }
