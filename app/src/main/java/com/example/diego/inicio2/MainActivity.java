@@ -1,35 +1,44 @@
 package com.example.diego.inicio2;
 
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.media.MediaDescriptionCompatApi21;
+
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RemoteViews;
 
+import com.example.diego.inicio2.Manejadores.ManejadorNotificaciones;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.vistas.Amigos;
 import com.example.diego.inicio2.vistas.CamaraGaleria;
-import com.example.diego.inicio2.vistas.Contactos;
-import com.example.diego.inicio2.vistas.CrearCuenta;
 import com.example.diego.inicio2.vistas.Inicio;
-import com.example.diego.inicio2.vistas.Loggin;
 import com.example.diego.inicio2.vistas.NavDrawerItem;
 import com.example.diego.inicio2.vistas.NavDrawerListAdapter;
 import com.example.diego.inicio2.vistas.Perfil;
 import com.example.diego.inicio2.vistas.Videos;
 
 import java.util.ArrayList;
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+
 
 
 public class MainActivity extends Activity {
@@ -142,6 +151,12 @@ public class MainActivity extends Activity {
             // display view for selected nav drawer item
             displayView(position);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ManejadorNotificaciones.notify("Exito!!!","para vos que lo miras por pc",1334);
     }
 
     @Override
