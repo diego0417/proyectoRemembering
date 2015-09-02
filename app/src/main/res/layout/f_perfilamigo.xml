@@ -19,7 +19,7 @@
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="160dp"
-        android:id="@+id/background_MiPerfil"
+        android:id="@+id/background_Friend"
         android:src="@drawable/fondoperfil5"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Matias Sosa"
         android:textSize="20dp"
-        android:id="@+id/nombreCompleto_MiPerfil"
+        android:id="@+id/nombreCompleto_PerfilAmigo"
         android:textStyle="bold"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
@@ -51,24 +51,24 @@
         android:text="E-mail"
         android:id="@+id/textView"
         android:textSize="12dp"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignStart="@+id/txtEmail_Perfil" />
+        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignStart="@+id/txtEmail_PerfilAmigo" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/emailn"
         android:id="@+id/imageView2"
-        android:layout_alignTop="@+id/txtEmail_Perfil"
-        android:layout_toStartOf="@+id/textView"
-        android:layout_marginEnd="23dp" />
+        android:layout_marginEnd="30dp"
+        android:layout_alignBottom="@+id/txtEmail_PerfilAmigo"
+        android:layout_toStartOf="@+id/txtEmail_PerfilAmigo" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEmail_Perfil"
+        android:id="@+id/txtEmail_PerfilAmigo"
         android:text="matiassosa@gmail.com"
         android:layout_marginTop="34dp"
-        android:layout_below="@+id/nombreCompleto_MiPerfil"
-        android:layout_alignStart="@+id/nombreCompleto_MiPerfil" />
+        android:layout_below="@+id/nombreCompleto_PerfilAmigo"
+        android:layout_alignStart="@+id/nombreCompleto_PerfilAmigo" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -83,7 +83,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtFechaNacimiento_MiPerfil"
+        android:id="@+id/txtFechaNacimiento_PerfilAmigo"
         android:text="04/06/1992"
         android:layout_alignTop="@+id/imageView3"
         android:layout_alignStart="@+id/textView" />
@@ -94,8 +94,8 @@
         android:text="Fecha de Nacimiento"
         android:id="@+id/textView3"
         android:textSize="12dp"
-        android:layout_below="@+id/txtFechaNacimiento_MiPerfil"
-        android:layout_alignStart="@+id/txtFechaNacimiento_MiPerfil" />
+        android:layout_below="@+id/txtFechaNacimiento_PerfilAmigo"
+        android:layout_alignStart="@+id/txtFechaNacimiento_PerfilAmigo" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtSexo_MiPerfil"
+        android:id="@+id/txtSexo_PerfilAmigo"
         android:text="Masculino"
         android:layout_alignTop="@+id/imageView4"
         android:layout_alignStart="@+id/textView3" />
@@ -121,20 +121,20 @@
         android:text="Sexo"
         android:id="@+id/textView5"
         android:textSize="12dp"
-        android:layout_below="@+id/txtSexo_MiPerfil"
-        android:layout_alignStart="@+id/txtSexo_MiPerfil" />
+        android:layout_below="@+id/txtSexo_PerfilAmigo"
+        android:layout_alignStart="@+id/txtSexo_PerfilAmigo" />
 
     <Button
         android:layout_width="50dp"
         android:layout_height="wrap_content"
 
-        android:id="@+id/btnCambiarImagen_Perfil"
+        android:id="@+id/btnAddFriend_PerfilAmigo"
         android:background="@android:color/transparent"
 
 
-        android:drawableLeft="@drawable/cambiarimagen"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView5" />
+        android:drawableLeft="@drawable/addamigo"
+        android:layout_alignTop="@+id/background_Friend"
+        android:layout_alignEnd="@+id/background_Friend" />
 
 
 </RelativeLayout>
