@@ -125,14 +125,14 @@
         android:layout_alignStart="@+id/txtSexo_MiPerfil" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
 
         android:id="@+id/btnCambiarImagen_Perfil"
-        android:background="@android:color/transparent"
+        android:background="@drawable/btn_add"
 
 
-        android:drawableLeft="@drawable/cambiarimagen"
+
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView5" />
 
