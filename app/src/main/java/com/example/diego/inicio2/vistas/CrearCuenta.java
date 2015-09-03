@@ -20,7 +20,10 @@ import android.widget.Toast;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,14 +33,11 @@ public class CrearCuenta extends Activity {
     Button btn;
     int ano_x,mes_x,dia_x;
     static final int DIALOG_ID=0;
-    TextView fechaNac;
+    EditText fechaNac;
     TextView linkLoggin;
     /*-------*/
-    EditText etNombre;
-    EditText etApelldo;
+    EditText etNombre,etApelldo,etPass,etMail;
     RadioButton rtSexo;
-    EditText etMail;
-    EditText etPass;
     Button btnRegistrarse;
 
     @Override
@@ -53,7 +53,7 @@ public class CrearCuenta extends Activity {
         ano_x= cal.get(Calendar.YEAR);
         mes_x = cal.get(Calendar.MONTH);
         dia_x= cal.get(Calendar.DAY_OF_MONTH);
-        fechaNac = (TextView) findViewById(R.id.txtFechaNaci_Reg);
+        fechaNac = (EditText) findViewById(R.id.txtFechaNaci_Reg);
         fechaNac.setEnabled(false);
         showDialogOnButtonClick();
         LocationToLoggin();
@@ -133,9 +133,44 @@ public class CrearCuenta extends Activity {
         public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth)
         {
             ano_x=year;
-            mes_x=monthOfYear;
+            mes_x=monthOfYear+1;
             dia_x=dayOfMonth;
-            fechaNac.setText(ano_x + "/" + mes_x + "/" + dia_x);
+
+            /* FECHA ACTUAL Y SELECCIONADA*/
+            Calendar c = Calendar.getInstance();
+            System.out.println("Current time => " + c.getTime());
+
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaactual = df.format(c.getTime());
+
+            String fechaSeleccionada=ano_x + "-" + mes_x + "-" + dia_x;
+
+            /*------------------------------*/
+
+            Date date=null;
+            Date date2=null;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                date = format.parse(fechaactual);
+                date2 = format.parse(fechaSeleccionada);
+
+            } catch (ParseException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+
+            if(date.compareTo(date2)<0)
+            {
+                Toast.makeText(CrearCuenta.this,"Fecha incorrecta, intenta nuevamente.",Toast.LENGTH_LONG).show();
+                fechaNac.setText("Fecha de Nacimiento");
+            }else
+            {
+
+                fechaNac.setText(fechaSeleccionada);
+            }
+
+
+
 
         }
     };

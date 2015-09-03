@@ -48,7 +48,7 @@
                 android:layout_marginTop="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:ems="10"
                 android:hint="Email"
                 android:layout_marginLeft="65dp"
@@ -64,6 +64,8 @@
                 android:hint="Password"
                 android:ems="10"
                 android:id="@+id/pass" />
+
+
 
             <LinearLayout
                 android:layout_marginTop="40dp"

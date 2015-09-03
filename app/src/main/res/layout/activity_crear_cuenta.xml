@@ -21,7 +21,7 @@
         android:layout_marginTop="10dp">
 
 
-        <TextView android:id="@+id/txtFechaNaci_Reg" android:layout_height="wrap_content" android:layout_width="190dp"
+        <EditText android:id="@+id/txtFechaNaci_Reg" android:layout_height="wrap_content" android:layout_width="190dp"
             android:hint="Fecha de Nacimiento"
             android:textColor="@color/color_secundario"
             android:inputType="text" android:editable="false"
