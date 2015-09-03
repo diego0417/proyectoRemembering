@@ -246,13 +246,16 @@ public class MainActivity extends Activity {
 
 
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                Log.i("diegooooooooooooo","paso");
-                builder1.setMessage("¿Deseas cerrar la sesión?");
+                Log.i("diegooooooooooooo", "paso");
+                builder1.setMessage("Deseas cerrar la sesion?");
                 builder1.setCancelable(true);
-                builder1.setPositiveButton("Yes",
+                builder1.setPositiveButton("Si",
                         new DialogInterface.OnClickListener() {
+                            Intent intent;
                             public void onClick(DialogInterface dialog, int id) {
-
+                                ManejadorUsuario.usuario=null;
+                                intent = new Intent(getApplicationContext(),Loggin.class);
+                                startActivity(intent);
                             }
                         });
                 builder1.setNegativeButton("No",
@@ -264,7 +267,6 @@ public class MainActivity extends Activity {
 
                 AlertDialog alert11 = builder1.create();
                 alert11.show();
-
 
             }
 
@@ -287,6 +289,11 @@ public class MainActivity extends Activity {
         if(intent!=null){
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 
     @Override
