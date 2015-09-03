@@ -56,7 +56,8 @@
     <string name="title_activity_perfil_amigo">perfilAmigo</string>
 
 
-
+    <string name="upload">Se subio la foto de perfil! :)</string>
+    <string name="title_activity_foto_perfil">FotoPerfil</string>
 
 
 </resources>
