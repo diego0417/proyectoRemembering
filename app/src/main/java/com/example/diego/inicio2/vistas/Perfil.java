@@ -69,8 +69,6 @@ public class Perfil extends Fragment {
 
         cambiarImg = (Button) rootView.findViewById(R.id.btnCambiarImagen_Perfil);
 
-
-
         cambiarImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +79,10 @@ public class Perfil extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int seleccion) {
                         if(options[seleccion] == "Tomar foto"){
-                            openCamera();
+                            //openCamera();
+                            Intent i = new Intent(rootView.getContext(), FotoPerfil.class );
+                            startActivity(i);
+
                         }else if (options[seleccion] == "Elegir de galeria") {
                             Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                             intent.setType("image/*");

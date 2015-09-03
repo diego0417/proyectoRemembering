@@ -156,7 +156,7 @@ public class ManejadorUsuario {
     {
         ArrayList<Usuario> lista = new ArrayList<Usuario>();
         MYSQL_Request request = Conexion.nuevaConexion();
-        request.setRequest("call buscarAmigos('"+buscar+"');");
+        request.setRequest("call buscarAmigos('"+buscar+"',"+ManejadorUsuario.usuario.getIdUsuario()+");");
         request.getServerData();
         while (request.getNextEntry()) {
             JSONObject data = request.getJsonValue();
@@ -232,11 +232,16 @@ public class ManejadorUsuario {
         return new Usuario(id,mail,nombre,apellido,fecha,sexo,"");
     }
 
+    private static String capitalize(String line)
+    {
+        return Character.toUpperCase(line.charAt(0)) + line.substring(1);
+    }
+
 
     static public Boolean insertarUsuario(String nombre,String apellido,String mail,String pass, Boolean sexo,String fecha)
     {
         MYSQL_Request request = Conexion.nuevaConexion();
-        request.setRequest("INSERT INTO usuario (nombre,apellido,mail,pass,sexo,fecha) VALUES ('"+nombre+"','"+apellido+"','"+mail+"','"+pass+"',"+sexo+",'"+fecha+"');");
+        request.setRequest("INSERT INTO usuario (nombre,apellido,mail,pass,sexo,fecha) VALUES ('"+capitalize(nombre)+"','"+capitalize(apellido)+"','"+mail+"','"+pass+"',"+sexo+",'"+fecha+"');");
 
         request.executeRequestWithID();
 

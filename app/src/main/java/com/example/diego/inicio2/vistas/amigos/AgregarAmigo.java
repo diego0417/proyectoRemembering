@@ -56,9 +56,15 @@ public class AgregarAmigo extends Fragment{
             }
 
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                lv.setAdapter(null);
-                lista = ManejadorUsuario.getBuscarAmigos(buscar.getText().toString());
-                cargarvistas();
+                if(buscar.getText().toString().length()!=0) {
+                    lv.setAdapter(null);
+                    lista = ManejadorUsuario.getBuscarAmigos(buscar.getText().toString());
+                    cargarvistas();
+                }else{
+                    lv.setAdapter(null);
+                    cargarAmigos();
+                    cargarvistas();
+                }
             }
         });
 
@@ -78,11 +84,7 @@ public class AgregarAmigo extends Fragment{
 
     private void cargarAmigos()
     {
-        //Log.i("saf", "PUTAAA funcion cargar video");
         lista = ManejadorUsuario.getMisAmigos();
-        //Log.i("saf", "PUTAAA termine funcion cargar video" + lista.toString());
-        //lista.add(new Video(1,null,null,null,null,null,"hola","hola"));
-        //lista.add(new Video(1,null,null,null,null,null,"hola2","hola2"));
     }
 
     public void cargarvistas()
