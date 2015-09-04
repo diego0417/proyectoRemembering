@@ -131,8 +131,7 @@ public class Inicio extends Fragment {
     }
 
 
-    private String calculaTiempo(Date actual,Date vieja){
-
+    /*private String calculaTiempo(Date actual,Date vieja){
 
         if(vieja == null){
             return "???";
@@ -173,7 +172,48 @@ public class Inicio extends Fragment {
             return Long.toString(segundos)+" seg";
         }
 
-    }
+    }*/
+    private String calculaTiempo(Date actual,Date vieja){
 
+        if(vieja == null){
+            return "???";
+        }
+
+        //los milisegundos
+        long diferenciaMils = actual.getTime() - vieja.getTime();
+
+        //obtenemos los segundos
+        long segundos = diferenciaMils / 1000;
+
+        if(segundos>50){
+            //obtenemos los minutos
+            long minutos = segundos /60;
+            if(minutos>58){
+                //obtenemos las horas
+                long horas = minutos / 60;
+                if(minutos> 1390){
+                    //obtenemos las dias
+                    long dias = horas / 24;
+                    if(dias>29){
+                        //obtenemos los mes
+
+                        return "very old";
+                    }else
+                    {
+                        return Long.toString(dias)+" dias";
+                    }
+
+                }else {
+                    return "Hoy";
+                }
+            }else{
+                return "Hoy";
+            }
+        }else
+        {
+            return "Hoy";
+        }
+
+    }
 
 }
