@@ -285,18 +285,10 @@ public class ManejadorUsuario {
     static public Boolean cancelarSolicitud(int id)
     {
         MYSQL_Request request = Conexion.nuevaConexion();
-        HashMap<String, String> values = new HashMap<String, String>();
+        request.setRequest("call cancelarSolicitud("+ManejadorUsuario.usuario.getIdUsuario()+","+id+");");
 
-        values.put("ESTADO", "2");
-        Boolean res= true;
-        try
-        {
-            request.setRequestUpdate("amigos",values,"ID_USUARIO_PEDIDO = '"+id+"' and ID_USUARIO_RES="+ManejadorUsuario.usuario.getIdUsuario());
-            request.executeRequest();
-        }catch (Exception e){
-            res = false;
-        }
-        return res;
+        request.executeRequest();
+        return true;
     }
 
 }

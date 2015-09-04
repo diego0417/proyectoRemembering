@@ -83,7 +83,7 @@ public class ManejadorVideo {
         MYSQL_Request request = Conexion.nuevaConexion();
         HashMap<String, String> values = new HashMap<String, String>();
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         values.put("FECHA_DESBLOQUEO", format.format(video.getFechaDesbloqueo()));
         values.put("ID_PERMISO", Integer.toString(video.getPermiso().getIdPermiso()));

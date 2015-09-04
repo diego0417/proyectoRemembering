@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -222,7 +223,7 @@ public class CamaraGaleria extends Activity {
         Intent i = new Intent(CamaraGaleria.this, SubirVideo.class);
         if(isGaleria)
         {
-            i.putExtra("filePath", fileUri.toString());
+            i.putExtra("filePath", getRealPathFromURI(fileUri));
         }else {
             i.putExtra("filePath", fileUri.getPath());
         }
@@ -267,5 +268,19 @@ public class CamaraGaleria extends Activity {
         }
 
         return mediaFile;
+    }
+
+    private String getRealPathFromURI(Uri contentURI) {
+        String result;
+        Cursor cursor = getContentResolver().query(contentURI, null, null, null, null);
+        if (cursor == null) { // Source is Dropbox or other similar local file path
+            result = contentURI.getPath();
+        } else {
+            cursor.moveToFirst();
+            int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+            result = cursor.getString(idx);
+            cursor.close();
+        }
+        return result;
     }
 }
