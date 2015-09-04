@@ -193,12 +193,14 @@ public class ManejadorUsuario {
             try {
                 usuario = armarUsuario(data);
             } catch (Exception e) {
+                usuario = null;
             }
+
         }
         return usuario;
     }
 
-    static private Usuario armarUsuario(JSONObject data) throws JSONException {
+    static public Usuario armarUsuario(JSONObject data) throws JSONException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha = null;
         try {

@@ -193,6 +193,8 @@ public class MainActivity extends Activity {
     public static void modificaAmigosSolicitud(int cant){
         NavDrawerItem aux = navDrawerItems.get(3);
         aux.setCount(Integer.toString(cant));
+        aux.setCounterVisibility(true);
+        Log.i("diegoooooooooooo", "la en main cantidad es: "+cant);
         navDrawerItems.set(3,aux);
         adapter = new NavDrawerListAdapter(ApplicationContextProvider.getContext(),
                 navDrawerItems);

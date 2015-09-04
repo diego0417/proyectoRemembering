@@ -9,9 +9,12 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.Manejadores.ManejadorNotificaciones;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,7 +27,8 @@ public class Solicitudes extends Service {
     private static final long INTERVALO_ACTUALIZACION = 20000; // En ms .. 1 s son 1000 ms
     private Handler handler;
     int idNoti = 1001;
-    int cantidad=0;
+    private ArrayList<Usuario> solicitantes;
+    private int cantidad;
 
     @Override
     public void onCreate() {
@@ -33,11 +37,19 @@ public class Solicitudes extends Service {
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(msg.what >0){
+                if(msg.what == 1){
                     //lanza noti
-                    ManejadorNotificaciones.notify("Nuevos amigos","Una nueva persona quiere ser tu amigo.",idNoti++);
+                    ManejadorNotificaciones.notify(solicitantes.get(0).getNombre()+" "+solicitantes.get(0).getApellido()," Quiere comenzar a ser tu amigo.", idNoti++);
                     ManejadorNotificaciones.modificarNotificacionesVisto();
-                    MainActivity.modificaAmigosSolicitud(cantidad);
+                    Log.i("diegooooooooooo","la cantidad del msj es: ");
+                    MainActivity.modificaAmigosSolicitud(ManejadorUsuario.cuentaSolicitudes());
+                }
+                if(msg.what > 1){
+                    //lanza noti
+                    ManejadorNotificaciones.notify("Nuevos amigos!", "Varias personas quieren tenerte de amigo.", idNoti++);
+                    ManejadorNotificaciones.modificarNotificacionesVisto();
+                    Log.i("diegooooooooooo","la cantidad del msj es: ");
+                    MainActivity.modificaAmigosSolicitud(ManejadorUsuario.cuentaSolicitudes());
                 }
             }
         };
@@ -54,7 +66,8 @@ public class Solicitudes extends Service {
         temporizador.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 Log.i("diegoooooooooooo","paaaaaaa");
-                cantidad = ManejadorNotificaciones.cuentaSolicitudes();
+                solicitantes = ManejadorNotificaciones.cuentaSolicitudes();
+                cantidad = solicitantes.size();
                 if(cantidad>0){
                     handler.sendEmptyMessage(cantidad);
                 }

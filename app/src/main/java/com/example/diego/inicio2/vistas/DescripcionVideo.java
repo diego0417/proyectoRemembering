@@ -69,6 +69,20 @@ public class DescripcionVideo extends Activity {
         dia_x= cal.get(Calendar.DAY_OF_MONTH);
         fecha_desb = (EditText) findViewById(R.id.txtFechaDesbloqueo_DescVideo);
         fecha_desb.setEnabled(false);
+
+        /* Seteo fecha actual de entrada*/
+        Calendar c = Calendar.getInstance();
+
+        System.out.println("Current time => " + c.getTime());
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaactual = df.format(c.getTime());
+
+        fecha_desb.setText(fechaactual);
+
+
+        /* ------------------------- */
+
         showDialogOnButtonClick();
 
 
@@ -119,7 +133,7 @@ public class DescripcionVideo extends Activity {
                     descripcion = (EditText)findViewById(R.id.txtDescripcion_DescVideo);
                     Usuario usuario = ManejadorUsuario.usuario;
                     Date fechaDesbloqueo;
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                     try {
                         fechaDesbloqueo = format.parse(fecha_desb.getText().toString());
                         Log.e("asda","NONONO"+fechaDesbloqueo);
@@ -170,7 +184,7 @@ public class DescripcionVideo extends Activity {
 
     public static Date ParseFecha(String fecha)
     {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaDate = null;
         try
         {
