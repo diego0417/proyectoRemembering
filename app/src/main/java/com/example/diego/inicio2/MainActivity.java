@@ -29,6 +29,7 @@ import android.widget.RemoteViews;
 
 import com.example.diego.inicio2.Manejadores.ManejadorNotificaciones;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
+import com.example.diego.inicio2.Servicios.Solicitudes;
 import com.example.diego.inicio2.vistas.Amigos;
 import com.example.diego.inicio2.vistas.CamaraGaleria;
 import com.example.diego.inicio2.vistas.Inicio;
@@ -68,6 +69,10 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent servicio = new Intent(this, Solicitudes.class);
+        startService(servicio);
+
         //seteo la variable que sabe el estado del menu
         menuAct = false;
 
@@ -256,6 +261,8 @@ public class MainActivity extends Activity {
                                 ManejadorUsuario.usuario=null;
                                 intent = new Intent(getApplicationContext(),Loggin.class);
                                 startActivity(intent);
+                                Intent servicio = new Intent(getApplicationContext(), Solicitudes.class);
+                                stopService(servicio);
                             }
                         });
                 builder1.setNegativeButton("No",
@@ -289,11 +296,6 @@ public class MainActivity extends Activity {
         if(intent!=null){
             startActivity(intent);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
     }
 
     @Override
