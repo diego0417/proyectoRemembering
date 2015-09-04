@@ -75,11 +75,10 @@ public class SubirVideo extends Activity {
 		filePath = i.getStringExtra("filePath");
 
 		// boolean flag to identify the media type, image or video
-		boolean isImage = i.getBooleanExtra("isImage", true);
 
 		if (filePath != null) {
 			// Displaying the image or video on the screen
-			previewMedia(isImage);
+			previewMedia();
 		} else {
 			Toast.makeText(getApplicationContext(),
 					"Sorry, file path is missing!", Toast.LENGTH_LONG).show();
@@ -98,25 +97,14 @@ public class SubirVideo extends Activity {
 	/**
 	 * Displaying captured image/video on the screen
 	 * */
-	private void previewMedia(boolean isImage) {
-		// Checking whether captured media is image or video
-		if (isImage) {
-			vidPreview.setVisibility(View.GONE);
-			// bimatp factory
-			BitmapFactory.Options options = new BitmapFactory.Options();
+	private void previewMedia() {
 
-			// down sizing image as it throws OutOfMemory Exception for larger
-			// images
-			options.inSampleSize = 8;
-
-			final Bitmap bitmap = BitmapFactory.decodeFile(filePath, options);
-
-		} else {
 			vidPreview.setVisibility(View.VISIBLE);
 			vidPreview.setVideoPath(filePath);
+			Log.i("sadas","tuhermana "+filePath);
 			// start playing
 			vidPreview.start();
-		}
+
 	}
 
 	/**
@@ -155,6 +143,7 @@ public class SubirVideo extends Activity {
 			HttpPost httppost = new HttpPost(Conexion.FILE_UPLOAD_URL);
 
 			try {
+				Log.e("sad","YUYU1");
 				AndroidMultiPartEntity entity = new AndroidMultiPartEntity(
 						new ProgressListener() {
 
@@ -163,23 +152,30 @@ public class SubirVideo extends Activity {
 								publishProgress((int) ((num / (float) totalSize) * 100));
 							}
 						});
+				Log.e("sad","YUYU2");
 
 				File sourceFile = new File(filePath);
+				Log.e("sad","YUYU3");
 
 				// Adding file data to http body
 				entity.addPart("image", new FileBody(sourceFile));
+				Log.e("sad", "YUYU4");
 
 				// Extra parameters if you want to pass to server
 				entity.addPart("ID_USUARIO",
 						new StringBody(Integer.toString(ManejadorUsuario.usuario.getIdUsuario())));
 				//entity.addPart("email", new StringBody("abc@gmail.com"));
-
+				Log.e("sad","YUYU5");
 				totalSize = entity.getContentLength();
+				Log.e("sad","YUYU6");
 				httppost.setEntity(entity);
 
 				// Making server call
+				Log.e("sad","YUYU7");
 				HttpResponse response = httpclient.execute(httppost);
+				Log.e("sad","YUYU8");
 				HttpEntity r_entity = response.getEntity();
+				Log.e("sad","YUYU9");
 
 				int statusCode = response.getStatusLine().getStatusCode();
 				if (statusCode == 200) {

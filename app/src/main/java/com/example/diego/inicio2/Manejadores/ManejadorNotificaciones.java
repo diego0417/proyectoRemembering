@@ -11,8 +11,15 @@ import android.media.audiofx.BassBoost;
 import android.provider.Settings;
 
 import com.example.diego.inicio2.ApplicationContextProvider;
+import com.example.diego.inicio2.Conexion.Conexion;
+import com.example.diego.inicio2.Conexion.MYSQL_Request;
 import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.R;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 /**
  * Created by diego on 02/09/2015.
@@ -59,6 +66,46 @@ public class ManejadorNotificaciones {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
         Notification notification = builder.build();
         manager.notify(notiID,notification);
+    }
+
+    static public int cuentaSolicitudes()
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        request.setRequest("call cuentaSolicitudesNotificaciones("+ManejadorUsuario.usuario.getIdUsuario()+")");
+        request.getServerData();
+        int cant = 0;
+        while (request.getNextEntry()) {
+            JSONObject data = request.getJsonValue();
+            try {
+                cant = armarCantidadNotificacionesAmigos(data);
+            } catch (Exception e) {
+            }
+        }
+        return cant;
+    }
+
+    static private int armarCantidadNotificacionesAmigos(JSONObject data) throws JSONException {
+
+        int cant = Integer.parseInt(data.getString("cant"));
+
+        return cant;
+    }
+
+    static public Boolean modificarNotificacionesVisto()
+    {
+        MYSQL_Request request = Conexion.nuevaConexion();
+        HashMap<String, String> values = new HashMap<String, String>();
+
+        values.put("VISTO", "1");
+        Boolean res= true;
+        try
+        {
+            request.setRequestUpdate("amigos",values,"ID_USUARIO_RES="+ManejadorUsuario.usuario.getIdUsuario());
+            request.executeRequest();
+        }catch (Exception e){
+            res = false;
+        }
+        return res;
     }
 
 }

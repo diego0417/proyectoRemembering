@@ -29,7 +29,7 @@ public class CamaraGaleria extends Activity {
     private static final String TAG ="Camaravideo";
 
 
-    private static final int CAMERA_CAPTURE_IMAGE_REQUEST_CODE = 100;
+    private static final int CAMERA_CAPTURE_GALERIA_REQUEST_CODE = 100;
     private static final int CAMERA_CAPTURE_VIDEO_REQUEST_CODE = 200;
 
     public static final int MEDIA_TYPE_IMAGE = 1;
@@ -106,28 +106,24 @@ public class CamaraGaleria extends Activity {
 
     private void abrirGaleria() {
         Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, MEDIA_TYPE_VIDEO);
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
-        intent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, CAMERA_CAPTURE_GALERIA_REQUEST_CODE);
+        //intent.putExtra(MediaStore.EXTRA_SCREEN_ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // start the video capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
+        //startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);
 
-
+        /*
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, CAMERA_CAPTURE_VIDEO_REQUEST_CODE);*/
     }
 
     /**
      * Launching camera app to capture image
      */
-    private void captureImage() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        fileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-
-        // start the image capture Intent
-        startActivityForResult(intent, CAMERA_CAPTURE_IMAGE_REQUEST_CODE);
-    }
 
     /**
      * Launching camera app to record video
@@ -176,11 +172,12 @@ public class CamaraGaleria extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // if the result is capturing Image
-        if (requestCode == CAMERA_CAPTURE_IMAGE_REQUEST_CODE) {
+        if (requestCode == CAMERA_CAPTURE_GALERIA_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
 
                 // successfully captured the image
                 // launching upload activity
+                fileUri = data.getData();
                 launchUploadActivity(true);
 
 
@@ -221,29 +218,23 @@ public class CamaraGaleria extends Activity {
         }
     }
 
-    private void launchUploadActivity(boolean isImage){
+    private void launchUploadActivity(boolean isGaleria){
         Intent i = new Intent(CamaraGaleria.this, SubirVideo.class);
-        i.putExtra("filePath", fileUri.getPath());
-        i.putExtra("isImage", isImage);
+        if(isGaleria)
+        {
+            i.putExtra("filePath", fileUri.toString());
+        }else {
+            i.putExtra("filePath", fileUri.getPath());
+        }
+
+
         startActivity(i);
-
-
     }
 
-    /**
-     * ------------ Helper Methods ----------------------
-     * */
-
-    /**
-     * Creating file uri to store image/video
-     */
     public Uri getOutputMediaFileUri(int type) {
         return Uri.fromFile(getOutputMediaFile(type));
     }
 
-    /**
-     * returning image / video
-     */
     private static File getOutputMediaFile(int type) {
 
         // External sdcard location

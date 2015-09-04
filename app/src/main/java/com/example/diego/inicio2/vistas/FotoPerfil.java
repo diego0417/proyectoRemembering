@@ -98,16 +98,8 @@ public class FotoPerfil  extends Activity {
         Log.i(TAG, "onActivityResult: " + this);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == Activity.RESULT_OK) {
             setPic();
-//			Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-//			if (bitmap != null) {
-//				mImageView.setImageBitmap(bitmap);
-//				try {
-//					sendPhoto(bitmap);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//			}
+            Toast.makeText(FotoPerfil.this, "Subiendo foto.... Nosotros le avisamos", Toast.LENGTH_LONG).show();
+            finish();
         }
         if(requestCode == SELECT_PICTURE && resultCode == Activity.RESULT_OK)
         {
@@ -125,8 +117,9 @@ public class FotoPerfil  extends Activity {
 					    // TODO Auto-generated catch block
 					    e.printStackTrace();
 				    }
-			}
-
+			    }
+                Toast.makeText(FotoPerfil.this, "Subiendo foto... Nosotros le avisamos", Toast.LENGTH_LONG).show();
+                finish();
                 /*bitmap = Bitmap.createBitmap(bitmap, 0, 0, 1000, 1000);
                 sendPhoto(bitmap);*/
             }catch (IOException e) {

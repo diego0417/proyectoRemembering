@@ -38,6 +38,7 @@ import com.example.diego.inicio2.R;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Logger;
 
 /**
@@ -67,7 +68,28 @@ public class Perfil extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.f_perfil, container, false);
 
-        cambiarImg = (Button) rootView.findViewById(R.id.btnCambiarImagen_Perfil);
+
+        ImageView img = (ImageView)rootView.findViewById(R.id.imgUsuario_MiPerfil);
+        new ImageLoad(Conexion.MI_IP+"FotosPerfil/"+ManejadorUsuario.usuario.getIdUsuario()+".jpg", img).execute();
+
+        TextView nombre = (TextView) rootView.findViewById(R.id.nombreCompleto_MiPerfil);
+        nombre.setText(ManejadorUsuario.usuario.getNombre() + " " + ManejadorUsuario.usuario.getApellido());
+
+        TextView mail = (TextView) rootView.findViewById(R.id.txtEmail_Perfil);
+        mail.setText(ManejadorUsuario.usuario.getMail());
+
+        TextView fecha = (TextView) rootView.findViewById(R.id.txtFechaNacimiento_MiPerfil);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        fecha.setText(format.format(ManejadorUsuario.usuario.getFecha()));
+
+        TextView sexo = (TextView) rootView.findViewById(R.id.txtSexo_MiPerfil);
+        if(ManejadorUsuario.usuario.getSexo())
+        {
+            sexo.setText("Masculino");
+        }else{
+            sexo.setText("Femenino");
+        }
+        cambiarImg = (Button)rootView.findViewById(R.id.btnCambiarImagen_Perfil);
 
         cambiarImg.setOnClickListener(new View.OnClickListener() {
             @Override
