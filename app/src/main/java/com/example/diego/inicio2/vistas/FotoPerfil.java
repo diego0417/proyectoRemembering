@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.diego.inicio2.Conexion.Conexion;
 import com.example.diego.inicio2.Conexion.MultipartEntity;
 import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
@@ -149,7 +150,7 @@ public class FotoPerfil  extends Activity {
             DefaultHttpClient httpclient = new DefaultHttpClient();
             try {
                 HttpPost httppost = new HttpPost(
-                        "http://10.75.21.164/MiAndroid/fotoPerfil.php"); // server
+                        Conexion.MI_IP+"fotoPerfil.php"); // server
 
                 MultipartEntity reqEntity = new MultipartEntity();
                 reqEntity.addPart("myFile",

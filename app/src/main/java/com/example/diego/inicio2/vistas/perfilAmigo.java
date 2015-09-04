@@ -25,9 +25,10 @@ import java.text.SimpleDateFormat;
 
 public class PerfilAmigo extends Activity {
 
-    Button bloquear;
+    Button cancelar;
     Button agregar;
     Button aceptar;
+    Button espera;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,43 +57,51 @@ public class PerfilAmigo extends Activity {
         }else{
             sexo.setText("Femenino");
         }
-        bloquear = (Button)findViewById(R.id.btnbloquear_PerfilAmigo);
+        cancelar = (Button)findViewById(R.id.btn_cancelaramistad_PerfilAmigo);
         aceptar = (Button)findViewById(R.id.btnAceptarSolicitud_PerfilAmigo);
         agregar = (Button) findViewById(R.id.btnAgregarAmigo_PerfilAmigo);
+        espera = (Button) findViewById(R.id.btnEsperandoAmistad_PerfilAmigo);
+
 
         //0-NADIE ENVIO SOLICITUD DE AMISTAD, 1-NO ME RESPONDIO LA SOLICITUD,2-SOMOS AMIGOS,3-NO ME ACEPTO LA SOLICITUD
         //4-NO LE RESPONDI LA SOLICITUD,5-NO LE ACEPTE LA SOLICITUD
         int nosConocemos = ManejadorUsuario.nosConocemos(idAmigo);
         switch(nosConocemos) {
             case 0:
-                bloquear.setVisibility(Button.INVISIBLE);
+                cancelar.setVisibility(Button.INVISIBLE);
                 aceptar.setVisibility(Button.INVISIBLE);
                 agregar.setVisibility(Button.VISIBLE);
+                espera.setVisibility(Button.INVISIBLE);
                 break;
             case 1:
-                bloquear.setVisibility(Button.INVISIBLE);
+                cancelar.setVisibility(Button.INVISIBLE);
                 aceptar.setVisibility(Button.INVISIBLE);
                 agregar.setVisibility(Button.INVISIBLE);
+                espera.setVisibility(Button.VISIBLE);
                 break;
             case 2:
-                bloquear.setVisibility(Button.INVISIBLE);
+                cancelar.setVisibility(Button.INVISIBLE);
                 aceptar.setVisibility(Button.INVISIBLE);
                 agregar.setVisibility(Button.INVISIBLE);
+                espera.setVisibility(Button.INVISIBLE);
                 break;
             case 3:
-                bloquear.setVisibility(Button.INVISIBLE);
+                cancelar.setVisibility(Button.INVISIBLE);
                 aceptar.setVisibility(Button.INVISIBLE);
-                agregar.setVisibility(Button.VISIBLE);
+                agregar.setVisibility(Button.INVISIBLE);
+                espera.setVisibility(Button.VISIBLE);
                 break;
             case 4:
-                bloquear.setVisibility(Button.INVISIBLE);
+                cancelar.setVisibility(Button.VISIBLE);
                 aceptar.setVisibility(Button.VISIBLE);
                 agregar.setVisibility(Button.INVISIBLE);
+                espera.setVisibility(Button.INVISIBLE);
                 break;
             case 5:
-                bloquear.setVisibility(Button.INVISIBLE);
+                cancelar.setVisibility(Button.INVISIBLE);
                 aceptar.setVisibility(Button.INVISIBLE);
                 agregar.setVisibility(Button.VISIBLE);
+                espera.setVisibility(Button.INVISIBLE);
                 break;
         }
         aceptar.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +111,7 @@ public class PerfilAmigo extends Activity {
                 finish();
             }
         });
-        bloquear.setOnClickListener(new View.OnClickListener() {
+        cancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ManejadorUsuario.cancelarSolicitud(idAmigo);
