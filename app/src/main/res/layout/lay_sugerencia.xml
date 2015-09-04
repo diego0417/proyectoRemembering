@@ -79,7 +79,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="LISTO"
-            android:id="@+id/btnTerminar_DescVideo"
+            android:id="@+id/btnTerminar_Sugerencia"
             android:background="@drawable/counter_solicitud"
             android:textColor="@color/color_secundario_contraste"
 

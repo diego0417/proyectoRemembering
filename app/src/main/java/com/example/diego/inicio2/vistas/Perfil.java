@@ -94,21 +94,19 @@ public class Perfil extends Fragment {
         cambiarImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final CharSequence[] options = {"Tomar foto", "Elegir de galeria", "Cancelar"};
+                final CharSequence[] options = {"Cambiar foto", "Editar Perfil", "Cancelar"};
                 final AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
                 builder.setTitle("Elige una opcion ");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int seleccion) {
-                        if(options[seleccion] == "Tomar foto"){
+                        if(options[seleccion] == "Cambiar foto"){
                             //openCamera();
                             Intent i = new Intent(rootView.getContext(), FotoPerfil.class );
                             startActivity(i);
 
-                        }else if (options[seleccion] == "Elegir de galeria") {
-                            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                            intent.setType("image/*");
-                            startActivityForResult(intent.createChooser(intent, "Selecciona app de imagen"), SELECT_PICTURE);
+                        }else if (options[seleccion] == "Editar Perfil") {
+                            dialog.dismiss();
                         }else if(options[seleccion] == "Cancelar"){
                             dialog.dismiss();
                         }
@@ -128,22 +126,6 @@ public class Perfil extends Fragment {
         // PANTALLA EN VERTICAL
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
-        Drawable originalDrawable = getResources().getDrawable(R.drawable.perfil_default);
-
-        Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
-
-        originalBitmap = Bitmap.createBitmap(originalBitmap, 0, 0, 1100, 1100);
-
-        //creamos el drawable redondeado
-        RoundedBitmapDrawable roundedDrawable =
-                RoundedBitmapDrawableFactory.create(getResources(), originalBitmap);
-
-        //asignamos el CornerRadius
-        roundedDrawable.setCornerRadius(originalBitmap.getWidth());
-
-        imageView = (ImageView)(rootView).findViewById(R.id.imgUsuario_MiPerfil);
-
-        imageView.setImageDrawable(roundedDrawable);
 
         return rootView;
 
