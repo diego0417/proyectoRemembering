@@ -59,6 +59,7 @@
             android:name=".vistas.FotoPerfil"
             android:label="@string/title_activity_foto_perfil" >
         </activity>
+        <service android:name=".Servicios.Solicitudes"/>
     </application>
 
 </manifest>

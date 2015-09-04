@@ -29,6 +29,7 @@ import android.widget.RemoteViews;
 
 import com.example.diego.inicio2.Manejadores.ManejadorNotificaciones;
 import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
+import com.example.diego.inicio2.Servicios.Solicitudes;
 import com.example.diego.inicio2.vistas.Amigos;
 import com.example.diego.inicio2.vistas.CamaraGaleria;
 import com.example.diego.inicio2.vistas.Inicio;
@@ -49,7 +50,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    private static ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
     // nav drawer title
@@ -62,12 +63,16 @@ public class MainActivity extends Activity {
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
 
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
+    private static ArrayList<NavDrawerItem> navDrawerItems;
+    private static NavDrawerListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Intent servicio = new Intent(this, Solicitudes.class);
+        startService(servicio);
+
         //seteo la variable que sabe el estado del menu
         menuAct = false;
 
@@ -104,6 +109,7 @@ public class MainActivity extends Activity {
         {
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
         }
+
 
         //ver Videos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
@@ -184,7 +190,14 @@ public class MainActivity extends Activity {
     }
 
 
-
+    public static void modificaAmigosSolicitud(int cant){
+        NavDrawerItem aux = navDrawerItems.get(3);
+        aux.setCount(Integer.toString(cant));
+        navDrawerItems.set(3,aux);
+        adapter = new NavDrawerListAdapter(ApplicationContextProvider.getContext(),
+                navDrawerItems);
+        mDrawerList.setAdapter(adapter);
+    }
 
 
     @Override
@@ -256,6 +269,8 @@ public class MainActivity extends Activity {
                                 ManejadorUsuario.usuario=null;
                                 intent = new Intent(getApplicationContext(),Loggin.class);
                                 startActivity(intent);
+                                Intent servicio = new Intent(getApplicationContext(), Solicitudes.class);
+                                stopService(servicio);
                             }
                         });
                 builder1.setNegativeButton("No",
@@ -289,11 +304,6 @@ public class MainActivity extends Activity {
         if(intent!=null){
             startActivity(intent);
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
     }
 
     @Override
