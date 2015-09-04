@@ -211,7 +211,14 @@ public class ManejadorUsuario {
         String apellido = data.getString("APELLIDO");
         String mail = data.getString("MAIL");
         int id = Integer.parseInt(data.getString("ID_USUARIO"));
-        Boolean sexo = Boolean.parseBoolean(data.getString("SEXO"));
+        Boolean sexo;
+        if(Integer.parseInt(data.getString("SEXO"))==0)
+        {
+            sexo = false;
+        }else{
+            sexo = true;
+        }
+        Log.i("sfas","SEXO:"+sexo.toString());
         String pass = data.getString("PASS");
         return new Usuario(id,mail,nombre,apellido,fecha,sexo,pass);
     }
