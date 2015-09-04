@@ -13,12 +13,15 @@ import android.provider.Settings;
 import com.example.diego.inicio2.ApplicationContextProvider;
 import com.example.diego.inicio2.Conexion.Conexion;
 import com.example.diego.inicio2.Conexion.MYSQL_Request;
+import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.R;
+import com.example.diego.inicio2.vistas.Amigos;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -27,6 +30,8 @@ import java.util.HashMap;
 public class ManejadorNotificaciones {
 
     private static Context context = ApplicationContextProvider.getContext();
+
+    public static Usuario usuario = null;
 
     public static void notify (String title,String mensaje,int notiID,int currentProgress,int maxProgress){
         Bitmap iconLarge = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_diego_web);
@@ -51,6 +56,8 @@ public class ManejadorNotificaciones {
     }
 
     public static void notify (String title,String mensaje,int notiID){
+        Intent notificationIntent = new Intent(context, Amigos.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
         Bitmap iconLarge = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_launcher_diego_web);
         NotificationManager manager = (NotificationManager)context.getSystemService(context.NOTIFICATION_SERVICE);
         Notification.Builder builder = new Notification.Builder(context)
@@ -60,16 +67,16 @@ public class ManejadorNotificaciones {
                 .setTicker(mensaje)
                 .setAutoCancel(true)
                 .setContentText(mensaje)
-                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setContentIntent(pendingIntent);
 
-        Intent notificationIntent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
         Notification notification = builder.build();
         manager.notify(notiID,notification);
     }
 
-    static public int cuentaSolicitudes()
+    static public ArrayList<Usuario> cuentaSolicitudes()
     {
+        ArrayList<Usuario> lista = new ArrayList<Usuario>();
         MYSQL_Request request = Conexion.nuevaConexion();
         request.setRequest("call cuentaSolicitudesNotificaciones("+ManejadorUsuario.usuario.getIdUsuario()+")");
         request.getServerData();
@@ -77,11 +84,10 @@ public class ManejadorNotificaciones {
         while (request.getNextEntry()) {
             JSONObject data = request.getJsonValue();
             try {
-                cant = armarCantidadNotificacionesAmigos(data);
-            } catch (Exception e) {
-            }
+                lista.add(ManejadorUsuario.armarUsuario(data));
+            } catch (Exception e) {}
         }
-        return cant;
+        return lista;
     }
 
     static private int armarCantidadNotificacionesAmigos(JSONObject data) throws JSONException {
