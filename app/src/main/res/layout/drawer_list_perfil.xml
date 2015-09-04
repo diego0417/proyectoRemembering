@@ -14,7 +14,7 @@ android:background="@drawable/fondoperfil5"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="16dp"
     android:contentDescription="@string/desc_list_item_icon"
-    android:src="@drawable/prueba2"
+    android:src="@drawable/perfil_default"
 
     android:layout_centerVertical="true" />
 

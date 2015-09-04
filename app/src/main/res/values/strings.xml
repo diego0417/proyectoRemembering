@@ -7,7 +7,11 @@
     <string name="grabaVideo">Grabar Video</string>
     <string name="contactos">Mis Contactos</string>
     <string name="videos">Mis Videos</string>
-    <string name="cerrarSesion">Cerrar Sesion</string>
+    <string name="cerrarSesion">Cerrar Sesión</string>
+
+    <!-- titulos del Alert Dialog  -->
+    <string name="confirmacion">¿Estás seguro?</string>
+
     <!-- titulos de las paginas  -->
 
     <string name="t_inicio">Inicio</string>
@@ -23,7 +27,7 @@
 
     <!-- Nombres de los items -->
     <string-array name="nav_drawer_items">
-        <item >Diego Vilette</item>
+        <item >Mi Perfil</item>
         <item >Inicio</item>
         <item >Subir Video</item>
         <item >Amigos</item>
@@ -35,7 +39,7 @@
 
     <!-- Iconos de los items -->
     <array name="nav_drawer_icons">
-        <item>@drawable/prueba2</item>
+        <item>@drawable/perfil_default</item>
         <item>@drawable/home</item>
         <item>@drawable/camarita</item>
         <item>@drawable/user</item>
@@ -43,6 +47,7 @@
         <item>@drawable/sugerencia</item>
         <item>@drawable/info</item>
         <item>@drawable/salir</item>
+        <item>@drawable/v_default</item>
     </array>
 
     <!-- Content Description -->
