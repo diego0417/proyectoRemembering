@@ -7,7 +7,11 @@
     <string name="grabaVideo">Grabar Video</string>
     <string name="contactos">Mis Contactos</string>
     <string name="videos">Mis Videos</string>
-    <string name="cerrarSesion">Cerrar Sesion</string>
+    <string name="cerrarSesion">Cerrar Sesión</string>
+
+    <!-- titulos del Alert Dialog  -->
+    <string name="confirmacion">¿Estás seguro?</string>
+
     <!-- titulos de las paginas  -->
 
     <string name="t_inicio">Inicio</string>
