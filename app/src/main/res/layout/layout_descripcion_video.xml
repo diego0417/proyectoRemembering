@@ -78,7 +78,6 @@
     <EditText
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:text="Publicar Ahora"
         android:id="@+id/txtFechaDesbloqueo_DescVideo"
         android:layout_alignBottom="@+id/imageView6"
         android:enabled="false"

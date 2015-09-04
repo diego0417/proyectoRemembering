@@ -137,14 +137,23 @@
         android:layout_height="60dp"
         android:id="@+id/btnAceptarSolicitud_PerfilAmigo"
         android:background="@drawable/btn_aceptar"
-        android:layout_alignTop="@+id/btnAgregarAmigo_PerfilAmigo"
+        android:layout_above="@+id/btnAgregarAmigo_PerfilAmigo"
         android:layout_alignStart="@+id/btnAgregarAmigo_PerfilAmigo" />
 
     <Button
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/btnbloquear_PerfilAmigo"
-        android:background="@drawable/btn_bloquear"
+        android:id="@+id/btnEsperandoAmistad_PerfilAmigo"
+        android:background="@drawable/btn_esperando"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/btn_cancelaramistad_PerfilAmigo"
+        android:background="@drawable/btn_cancelaramistad"
+
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/btnAgregarAmigo_PerfilAmigo" />
 

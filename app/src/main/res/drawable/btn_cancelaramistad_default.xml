@@ -2,11 +2,11 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="oval">
-            <solid android:color="#004d50"/>
+            <solid android:color="@color/color_secundario"/>
         </shape>
     </item>
     <item
-        android:drawable="@drawable/aceptarsoli"
+        android:drawable="@drawable/cancelar"
         android:bottom="20dp"
         android:left="20dp"
         android:right="20dp"
