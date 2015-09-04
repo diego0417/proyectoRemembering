@@ -17,7 +17,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="12dp"
             android:id="@+id/min_video_videos"
-            android:src="@drawable/prueba2"
+            android:src="@drawable/v_default"
             android:background="@color/black_grey"/>
 
         <TextView

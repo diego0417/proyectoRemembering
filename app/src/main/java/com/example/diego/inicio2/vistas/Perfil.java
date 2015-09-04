@@ -128,7 +128,7 @@ public class Perfil extends Fragment {
         // PANTALLA EN VERTICAL
         getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
 
-        Drawable originalDrawable = getResources().getDrawable(R.drawable.pipi);
+        Drawable originalDrawable = getResources().getDrawable(R.drawable.perfil_default);
 
         Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
 
