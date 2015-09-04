@@ -50,7 +50,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerList;
+    private static ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
 
     // nav drawer title
@@ -63,8 +63,8 @@ public class MainActivity extends Activity {
     private String[] navMenuTitles;
     private TypedArray navMenuIcons;
 
-    private ArrayList<NavDrawerItem> navDrawerItems;
-    private NavDrawerListAdapter adapter;
+    private static ArrayList<NavDrawerItem> navDrawerItems;
+    private static NavDrawerListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +109,7 @@ public class MainActivity extends Activity {
         {
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
         }
+
 
         //ver Videos
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
@@ -189,7 +190,14 @@ public class MainActivity extends Activity {
     }
 
 
-
+    public static void modificaAmigosSolicitud(int cant){
+        NavDrawerItem aux = navDrawerItems.get(3);
+        aux.setCount(Integer.toString(cant));
+        navDrawerItems.set(3,aux);
+        adapter = new NavDrawerListAdapter(ApplicationContextProvider.getContext(),
+                navDrawerItems);
+        mDrawerList.setAdapter(adapter);
+    }
 
 
     @Override

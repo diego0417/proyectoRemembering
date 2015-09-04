@@ -9,6 +9,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.diego.inicio2.MainActivity;
 import com.example.diego.inicio2.Manejadores.ManejadorNotificaciones;
 
 import java.util.Timer;
@@ -23,6 +24,7 @@ public class Solicitudes extends Service {
     private static final long INTERVALO_ACTUALIZACION = 20000; // En ms .. 1 s son 1000 ms
     private Handler handler;
     int idNoti = 1001;
+    int cantidad=0;
 
     @Override
     public void onCreate() {
@@ -31,10 +33,11 @@ public class Solicitudes extends Service {
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
-                if(msg.what == 1){
+                if(msg.what >0){
                     //lanza noti
-                    ManejadorNotificaciones.notify("Quieren ser tu amigo","algunas quieren conoserte richs",idNoti++);
+                    ManejadorNotificaciones.notify("Nuevos amigos","Una nueva persona quiere ser tu amigo.",idNoti++);
                     ManejadorNotificaciones.modificarNotificacionesVisto();
+                    MainActivity.modificaAmigosSolicitud(cantidad);
                 }
             }
         };
@@ -50,9 +53,10 @@ public class Solicitudes extends Service {
     private void iniciarCronometro() {
         temporizador.scheduleAtFixedRate(new TimerTask() {
             public void run() {
-
-                if(ManejadorNotificaciones.cuentaSolicitudes()!=0){
-                    handler.sendEmptyMessage(1);
+                Log.i("diegoooooooooooo","paaaaaaa");
+                cantidad = ManejadorNotificaciones.cuentaSolicitudes();
+                if(cantidad>0){
+                    handler.sendEmptyMessage(cantidad);
                 }
             }
         }, 0, INTERVALO_ACTUALIZACION);
