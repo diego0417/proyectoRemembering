@@ -37,6 +37,7 @@ import com.example.diego.inicio2.vistas.Loggin;
 import com.example.diego.inicio2.vistas.NavDrawerItem;
 import com.example.diego.inicio2.vistas.NavDrawerListAdapter;
 import com.example.diego.inicio2.vistas.Perfil;
+import com.example.diego.inicio2.vistas.Sugerencia;
 import com.example.diego.inicio2.vistas.Videos;
 
 import java.util.ArrayList;
@@ -239,6 +240,7 @@ public class MainActivity extends Activity {
         // update the main content by replacing fragments
         Fragment fragment = null;
         Intent intent = null;
+        AlertDialog.Builder alert = null;
         switch (position) {
             case 0:
                 fragment = new Perfil();
@@ -256,35 +258,49 @@ public class MainActivity extends Activity {
                 fragment = new Videos();
                 break;
             case 5:
-            {
-
-
-
-                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                fragment = new Sugerencia();
+                break;
+            case 6:
+                //aca va el alert info mati
+                alert = new AlertDialog.Builder(this);
                 Log.i("diegooooooooooooo", "paso");
-                builder1.setMessage("Deseas cerrar la sesion?");
-                builder1.setCancelable(true);
-                builder1.setPositiveButton("Si",
-                        new DialogInterface.OnClickListener() {
-                            Intent intent;
-                            public void onClick(DialogInterface dialog, int id) {
-                                ManejadorUsuario.usuario=null;
-                                intent = new Intent(getApplicationContext(),Loggin.class);
-                                startActivity(intent);
-                                Intent servicio = new Intent(getApplicationContext(), Solicitudes.class);
-                                stopService(servicio);
-                            }
-                        });
-                builder1.setNegativeButton("No",
+                alert.setIcon(R.drawable.ic_launcher_diego_web);
+                alert.setTitle("Remembering");
+                alert.setMessage("aca ponemos la informacion que queramos :)");
+                alert.setCancelable(true);
+                alert.setPositiveButton("Ok",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
+                break;
+            case 7:
+            {
+                alert = new AlertDialog.Builder(this);
+                Log.i("diegooooooooooooo", "paso");
+                alert.setIcon(R.drawable.ic_launcher_diego_web);
+                alert.setTitle("Cerrar Session");
+                alert.setMessage("Deseas cerrar la sesion?");
+                alert.setCancelable(true);
+                alert.setPositiveButton("Si",
+                        new DialogInterface.OnClickListener() {
+                            Intent intent;
 
-                AlertDialog alert11 = builder1.create();
-                alert11.show();
-
+                            public void onClick(DialogInterface dialog, int id) {
+                                ManejadorUsuario.usuario = null;
+                                intent = new Intent(getApplicationContext(), Loggin.class);
+                                startActivity(intent);
+                                Intent servicio = new Intent(getApplicationContext(), Solicitudes.class);
+                                stopService(servicio);
+                            }
+                        });
+                alert.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
             }
 
 
@@ -292,6 +308,10 @@ public class MainActivity extends Activity {
                 break;
         }
 
+        if(alert!=null){
+            AlertDialog alert11 = alert.create();
+            alert11.show();
+        }
         if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction()

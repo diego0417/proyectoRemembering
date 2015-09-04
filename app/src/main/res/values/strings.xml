@@ -28,6 +28,8 @@
         <item >Subir Video</item>
         <item >Amigos</item>
         <item >Mis Videos</item>
+        <item >Sugerencias</item>
+        <item >Acerca de Remembering</item>
         <item >Cerrar Sesion</item>
     </string-array>
 
@@ -38,6 +40,8 @@
         <item>@drawable/camarita</item>
         <item>@drawable/user</item>
         <item>@drawable/ver2</item>
+        <item>@drawable/sugerencia</item>
+        <item>@drawable/info</item>
         <item>@drawable/salir</item>
     </array>
 
