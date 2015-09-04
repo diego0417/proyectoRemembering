@@ -51,22 +51,22 @@
         android:text="E-mail"
         android:id="@+id/textView"
         android:textSize="12dp"
-        android:layout_alignTop="@+id/imageView2"
+        android:layout_alignBottom="@+id/imageView2"
         android:layout_alignStart="@+id/imgUsuario_PerfilAmigo" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/emailn"
         android:id="@+id/imageView2"
-        android:layout_marginStart="28dp"
-        android:layout_alignBottom="@+id/txtEmail_PerfilAmigo"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/txtEmail_PerfilAmigo"
+        android:layout_toStartOf="@+id/textView"
+        android:layout_marginEnd="26dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtEmail_PerfilAmigo"
         android:text="matiassosa@gmail.com"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="22dp"
         android:layout_below="@+id/nombreCompleto_PerfilAmigo"
         android:layout_alignStart="@+id/textView" />
 
@@ -125,24 +125,24 @@
         android:layout_alignStart="@+id/txtSexo_PerfilAmigo" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/btnAgregarAmigo_PerfilAmigo"
         android:background="@drawable/btn_circle"
         android:layout_alignParentBottom="true"
         android:layout_alignEnd="@+id/background_Friend" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/btnAceptarSolicitud_PerfilAmigo"
         android:background="@drawable/btn_aceptar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/background_Friend" />
+        android:layout_alignTop="@+id/btnAgregarAmigo_PerfilAmigo"
+        android:layout_alignStart="@+id/btnAgregarAmigo_PerfilAmigo" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/btnbloquear_PerfilAmigo"
         android:background="@drawable/btn_bloquear"
         android:layout_alignParentBottom="true"

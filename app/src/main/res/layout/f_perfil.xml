@@ -134,7 +134,7 @@
 
 
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView5" />
+        android:layout_alignTop="@+id/textView5" />
 
 
 </RelativeLayout>

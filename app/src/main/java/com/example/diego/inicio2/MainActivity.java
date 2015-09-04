@@ -2,9 +2,11 @@ package com.example.diego.inicio2;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -15,6 +17,9 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.media.MediaDescriptionCompatApi21;
 
 import android.support.v4.widget.DrawerLayout;
+
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +32,7 @@ import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.vistas.Amigos;
 import com.example.diego.inicio2.vistas.CamaraGaleria;
 import com.example.diego.inicio2.vistas.Inicio;
+import com.example.diego.inicio2.vistas.Loggin;
 import com.example.diego.inicio2.vistas.NavDrawerItem;
 import com.example.diego.inicio2.vistas.NavDrawerListAdapter;
 import com.example.diego.inicio2.vistas.Perfil;
@@ -38,7 +44,7 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -62,6 +68,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //seteo la variable que sabe el estado del menu
+        menuAct = false;
+
         setContentView(R.layout.activity_main);
         // PANTALLA EN VERTICAL
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//
@@ -159,6 +168,25 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    //variable que sabe cuando esta abierto el menu
+    private boolean menuAct;
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(menuAct) {
+          mDrawerLayout.closeDrawer(mDrawerList);
+        }else {
+            this.moveTaskToBack(true);
+        }
+        return true;
+    }
+
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // toggle nav drawer on selecting action bar app icon/title
@@ -177,10 +205,14 @@ public class MainActivity extends Activity {
     /* *
      * Called when invalidateOptionsMenu() is triggered
      */
+
+
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // if nav drawer is opened, hide the action items
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
+        menuAct = drawerOpen;
         menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
@@ -208,6 +240,35 @@ public class MainActivity extends Activity {
             case 4:
                 fragment = new Videos();
                 break;
+            case 5:
+            {
+
+
+
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                Log.i("diegooooooooooooo", "paso");
+                builder1.setMessage("Deseas cerrar la sesion?");
+                builder1.setCancelable(true);
+                builder1.setPositiveButton("Si",
+                        new DialogInterface.OnClickListener() {
+                            Intent intent;
+                            public void onClick(DialogInterface dialog, int id) {
+                                ManejadorUsuario.usuario=null;
+                                intent = new Intent(getApplicationContext(),Loggin.class);
+                                startActivity(intent);
+                            }
+                        });
+                builder1.setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
+            }
 
 
             default:
@@ -228,6 +289,11 @@ public class MainActivity extends Activity {
         if(intent!=null){
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
     }
 
     @Override
