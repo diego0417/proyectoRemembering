@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="La Punta San Luis"
+            android:text="Ver Ubicaion"
             android:textColor="@color/black_grey"
             android:id="@+id/inicio_perfil_ubicacion"
             android:layout_alignParentLeft="true"
@@ -50,7 +50,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="right">
 
             <TextView
