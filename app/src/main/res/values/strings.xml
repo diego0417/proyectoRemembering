@@ -67,6 +67,7 @@
 
     <string name="upload">Se subio la foto de perfil! :)</string>
     <string name="title_activity_foto_perfil">FotoPerfil</string>
+    <string name="title_activity_activity_ubicacion">Map</string>
 
 
 </resources>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.example.diego.inicio2.Conexion.Conexion;
 import com.example.diego.inicio2.Conexion.ImageLoad;
 import com.example.diego.inicio2.Entidades.Video;
+import com.example.diego.inicio2.Manejadores.ManejadorUsuario;
 import com.example.diego.inicio2.Manejadores.ManejadorVideo;
 import com.example.diego.inicio2.R;
 
@@ -51,7 +53,6 @@ public class Inicio extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;
                 intent = new Intent(rootView.getContext(), ReproducirVideo.class);
-
                 intent.putExtra("url", url.get(position));
                 startActivity(intent);
             }
@@ -95,7 +96,7 @@ public class Inicio extends Fragment {
                 itenview = getActivity().getLayoutInflater().inflate(R.layout.lay_inicio, parent, false);
             }
 
-            Video videoActual =lista.get(position);
+            final Video videoActual =lista.get(position);
             url.add(Conexion.MI_IP + "Video/" + videoActual.getIdVideo() + ".mp4");
             ImageView img = (ImageView)itenview.findViewById(R.id.inicio_foto_perfil);
             new ImageLoad(Conexion.MI_IP+"FotosPerfil/"+videoActual.getUsuario().getIdUsuario()+".jpg", img).execute();
@@ -118,7 +119,21 @@ public class Inicio extends Fragment {
             Date deVideo = videoActual.getFechaDesbloqueo();
             texto3.setText(calculaTiempo(actual, deVideo));
 
-
+            TextView btnCancelar = (TextView)itenview.findViewById(R.id.inicio_perfil_ubicacion);
+            btnCancelar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = null;
+                    intent = new Intent(rootView.getContext(), ActivityUbicacion.class);
+                    Log.e("asdasd","TUTU"+videoActual.getTitulo());
+                    Log.e("asdasd","TUTU"+Double.toString(videoActual.getUbicacion().getLatitud()));
+                    Log.e("asdasd","TUTU"+Double.toString(videoActual.getUbicacion().getLonguitud()));
+                    intent.putExtra("titulo", videoActual.getTitulo());
+                    intent.putExtra("latitud", Double.toString(videoActual.getUbicacion().getLatitud()));
+                    intent.putExtra("longitud", Double.toString(videoActual.getUbicacion().getLonguitud()));
+                    startActivity(intent);
+                }
+            });
 
             /*
             //PROBANDO SIN CONEXION

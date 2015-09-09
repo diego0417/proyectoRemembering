@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.diego.inicio2.Conexion.Conexion;
 import com.example.diego.inicio2.Conexion.MYSQL_Request;
+import com.example.diego.inicio2.Entidades.Ubicacion;
 import com.example.diego.inicio2.Entidades.Usuario;
 import com.example.diego.inicio2.Entidades.Video;
 
@@ -115,7 +116,8 @@ public class ManejadorVideo {
         } catch (Exception e) {
             fechaDesbloqueo = null;
         }
+        Ubicacion ubicacion = ManejadorUbicacion.ubicacionIdVideo(idVideo);
 
-        return new Video(idVideo,usuario,null,fechaDesbloqueo,null,null,titulo,descripcion);
+        return new Video(idVideo,usuario,null,fechaDesbloqueo,null,ubicacion,titulo,descripcion);
     }
 }

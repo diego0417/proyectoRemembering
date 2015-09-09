@@ -53,6 +53,7 @@ public class Loggin extends Activity {
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 ProgressBar pro = (ProgressBar) findViewById(R.id.progressBar_Log);
                 pro.setVisibility(View.VISIBLE);
                 etMail = (EditText) findViewById(R.id.mail);
@@ -64,6 +65,8 @@ public class Loggin extends Activity {
                     Intent intent = new Intent(Loggin.this, MainActivity.class);
                     startActivity(intent);
                 }
+                //Intent intent = new Intent(Loggin.this, ActivityUbicacion.class);
+                //startActivity(intent);
             }
         });
     }

@@ -93,7 +93,6 @@ public class ManejadorNotificaciones {
     static private int armarCantidadNotificacionesAmigos(JSONObject data) throws JSONException {
 
         int cant = Integer.parseInt(data.getString("cant"));
-
         return cant;
     }
 
