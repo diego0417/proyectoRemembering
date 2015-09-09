@@ -125,13 +125,14 @@ public class Inicio extends Fragment {
                 public void onClick(View v) {
                     Intent intent = null;
                     intent = new Intent(rootView.getContext(), ActivityUbicacion.class);
-                    Log.e("asdasd","TUTU"+videoActual.getTitulo());
-                    Log.e("asdasd","TUTU"+Double.toString(videoActual.getUbicacion().getLatitud()));
-                    Log.e("asdasd","TUTU"+Double.toString(videoActual.getUbicacion().getLonguitud()));
-                    intent.putExtra("titulo", videoActual.getTitulo());
-                    intent.putExtra("latitud", Double.toString(videoActual.getUbicacion().getLatitud()));
-                    intent.putExtra("longitud", Double.toString(videoActual.getUbicacion().getLonguitud()));
-                    startActivity(intent);
+                    Log.e("asdasd", "TUTU" + videoActual.getTitulo());
+                    if(videoActual.getUbicacion().getLatitud()!=0.0 && videoActual.getUbicacion().getLonguitud()!=0.0)
+                    {
+                        intent.putExtra("titulo", videoActual.getTitulo());
+                        intent.putExtra("latitud", Double.toString(videoActual.getUbicacion().getLatitud()));
+                        intent.putExtra("longitud", Double.toString(videoActual.getUbicacion().getLonguitud()));
+                        startActivity(intent);
+                    }
                 }
             });
 
